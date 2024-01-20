@@ -44,17 +44,6 @@ disablePathToLower = false
 relativeURLs = false
 uglyURLs = false
 
-# 评论区配置
-#[params.page.comment]
-#enable = true
-#[params.page.comment.giscus]
-#enable = true
-#repo = "liwuhen/liwuhen.github.io"
-#repoId = "MDEwOlJlcG9zaXRvcnkyNjI1MDk1MDg="
-#category = "General"
-#categoryId = "DIC_kwDOD6WTxM4CZXSb"
-#mapping = "title"
-
 # URL 结构
 [permalinks]
     categories = "/categories/:slug/"
@@ -303,11 +292,11 @@ uglyURLs = false
     # 3. posts     文章摘要
     # 4. page      普通页面
 
-    homeLayout = "poetry"
+    homeLayout = "page"
 
     ## 「诗意人生」
     # 诗句，支持 Markdown
-    homePoetry = [ "我认出了风暴，", "而激动如大海。", "我舒展开又跌回我自己，",  "又把自己抛出去，", "并且独个儿", "置身在伟大的风暴里。"]
+    homePoetry = [ ""]
     # 底部链接的内间距，单位：em
     homeLinksPadding = 1
 
@@ -339,11 +328,6 @@ uglyURLs = false
     # 站点的创建时间
     siteCreatedTime = "2018-08-20T20:17:43+00:00"
     # 注意：请保持此格式，更改数字
-
-    # 站点的推特帐号
-    #siteTwitter = "reuixiy"
-    # 说明：用于 Twitter Cards
-
 
     ######################################
     # 分类方式
@@ -550,7 +534,7 @@ uglyURLs = false
     # KaTeX 公式支持（包括化学方程式）
 
     # 是否开启（全局设置）
-    enableKaTeX = false
+    enableKaTeX = true
     # 说明：文章的 Front Matter 中的 `katex`
     #      的优先级高于此处
 
@@ -559,7 +543,7 @@ uglyURLs = false
     # MathJax 公式支持（包括化学方程式）
 
     # 是否开启（全局设置）
-    enableMathJax = false
+    enableMathJax = true
     # 说明：文章的 Front Matter 中的 `mathjax`
     #      的优先级高于此处
 
@@ -582,7 +566,7 @@ uglyURLs = false
     # 说明：仅在生产环境（production）下渲染
 
     # 是否开启（全局设置）
-    enableComments = true
+    enableComments = false
     # 说明：文章的 Front Matter 中的 `comments`
     #      的优先级高于此处
 
