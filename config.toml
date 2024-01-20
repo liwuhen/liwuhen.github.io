@@ -1,8 +1,8 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://quakewang.github.io/"
-title = "二夕说废话の地方"
+baseURL = "https://liwuhen.github.io/"
+title = "璇玑"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
@@ -45,15 +45,15 @@ relativeURLs = false
 uglyURLs = false
 
 # 评论区配置
-[params.page.comment]
-enable = true
-[params.page.comment.giscus]
-enable = true
-repo = "QuakeWang/quakewang.github.io"
-repoId = "MDEwOlJlcG9zaXRvcnkyNjI1MDk1MDg="
-category = "General"
-categoryId = "DIC_kwDOD6WTxM4CZXSb"
-mapping = "title"
+#[params.page.comment]
+#enable = true
+#[params.page.comment.giscus]
+#enable = true
+#repo = "liwuhen/liwuhen.github.io"
+#repoId = "MDEwOlJlcG9zaXRvcnkyNjI1MDk1MDg="
+#category = "General"
+#categoryId = "DIC_kwDOD6WTxM4CZXSb"
+#mapping = "title"
 
 # URL 结构
 [permalinks]
@@ -103,17 +103,16 @@ mapping = "title"
 # 作者信息
 [author]
     # 名字
-    name = "二夕"
+    name = "李无痕"
     # 邮箱
-    email = "wangfuzheng0814@foxmail.com"
+    email = "liwuhen5788@gmail.com"
     # 座右铭或简介
     motto = "求知 寻我 白说、不圆"
     # 头像
     avatar = "/static/favicon.ico"
     # 网站（默认值：baseURL）
-    website = "https://quakewang.github.io/"
-    # 推特
-    twitter = "WangErxi"
+    website = "https://liwuhen.github.io/"
+    
 
 # 相关文章
 [related]
@@ -190,19 +189,6 @@ mapping = "title"
 #               `lang-switcher`、`search`）
 
 [menu]
-    ## 菜单栏
- #   [[menu.main]]
- #   url = "/"
- #   name = "首页"
- #    weight = 1
- # pre = "internal"
- # post = "home"
- #   [[menu.main]]
- #       url = "/leetcode/"
- #    name = "leetcode"
- #       weight = 2
- #     pre = "internal"
- #       post = "archive"
    [[menu.main]]
         url = "/life/"
         name = "生活"
@@ -211,12 +197,19 @@ mapping = "title"
         post = "grav"
         identifier = "life"
     [[menu.main]]
-        url = "/tech/"
-        name = "技术"
+        url = "/NOA/"
+        name = "自动驾驶行车技术"
         weight = 2
         pre = "internal"
         post = "wpexplorer"
-        identifier = "tech"
+        identifier = "NOA"
+    [[menu.main]]
+        url = "/Parking/"
+        name = "自动驾驶泊车技术"
+        weight = 2
+        pre = "internal"
+        post = "wpexplorer"
+        identifier = "Parking"
     [[menu.main]]
         url = "/about/"
         name = "关于"
@@ -339,12 +332,12 @@ mapping = "title"
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "二夕的个人博客，一半献给技术，另一半还在寻找。。。"
+    siteDescription = "璇玑枢纽"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
     # 站点的创建时间
-    siteCreatedTime = "2020-07-20T20:17:43+00:00"
+    siteCreatedTime = "2018-08-20T20:17:43+00:00"
     # 注意：请保持此格式，更改数字
 
     # 站点的推特帐号
@@ -1036,9 +1029,9 @@ mapping = "title"
     #      的优先级高于此处
 
     # 仓库地址
-    repoURL = "https://github.com/QuakeWang/quakewang.github.io/"
+    repoURL = "https://github.com/liwuhen/liwuhen.github.io/"
     # 编辑地址
-    repoEditURL = "https://github.com/QuakeWang/quakewang.github.io/"
+    repoEditURL = "https://github.com/liwuhen/liwuhen.github.io/"
 
     # Git 的图标
     gitIcon = "code-branch"
