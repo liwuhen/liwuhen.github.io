@@ -16,25 +16,28 @@ draft: false
     (2) 命名空间的定义可以不连续，甚至可以写在多个文件中。
     (3) 外界如何访问命名空间中的函数?
     格式：命名空间名::实体名          ----其中这::叫 ‘作用于运算符’
->
-    ''' C++代码
-    #include <iostream>
-    #include "project3.hpp"
 
-    namespace zhangsan
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+''' C++代码
+#include <iostream>
+#include "project3.hpp"
+namespace zhangsan
+{
+    void radius()
     {
-        void radius()
-        {
-            printf("shangsan 的radius()函数");
-        }
+        printf("shangsan 的radius()函数");
     }
-
-    int main()
-    {
-        zhangsan::radius();
-        lisi::radius(); 
-        return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
-    }
+}
+int main()
+{
+    zhangsan::radius();
+    lisi::radius(); 
+    return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
+}
+</code></pre>
+</details>
 
 ## 1.2 输入输出流
 #### 二、基本的输入输出流
@@ -44,7 +47,19 @@ c++中我们不是用printf，使用cout,c++的标准库
     a) 输出换行符 \n
     b) 强制刷新输出缓冲区，缓冲区的所有数据都被系统清除。
 (3) std::cin 基本输入  >>输入运算符   <<输出运算符
-
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+''' C++代码
+#include <iostream>
+#include "project3.hpp"
+int main()
+{
+    std::cout<<"testing"<< std::endl;
+    return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
+}
+</code></pre>
+</details>
     
     
 ## 1.3 auto、头文件防卫、引用与常量
@@ -72,7 +87,71 @@ c++中我们不是用printf，使用cout,c++的标准库
     (2) constexpr函数的形参可以是非常量，但是实参必须是常量
     (3) constexpr函数的返回值类型必须是字面值类型
     (4) 声明为constexpr的变量一定是一个const变量，而且必须用常量表达式初始化
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+''' C++代码
+#include <iostream>
+#include "project3.hpp"
+using namespace std;
+void fun(int &a, int &b){ //形参是引用
+    a = 10;
+    b = 20;
+}
+constexpr int function(){
+    int abc = 6;
+    int a4 = 6; //这里的变量必须初始化，不然报错
+    for(int i = 0; i < 10; i++){
+        //cout<< i << endl; //有变量会报错
+    }
+    return 5;
+}
+constexpr int function_l(){
+    int abc = 6;
+    int a4 = 6; //这里的变量必须初始化，不然报错
+    for(int i = 0; i < 10; i++){
+        cout<< i << endl; //有变量会报错
+    }
+    return 5;
+}
+int main()
+{
+   //一、局部变量初始化
+   for(int i = 0; i < 10; i++){  // i的作用域仅限于for内部
+       cout<< i << endl;
+   }
+   int a = 5; //定义的时候初始化
+   int b = {5}; //可以不要等号
+   cout<<"b= "<< b << endl;
+   int c[] {1,2,3,4}; //可以不要等号去定义数组
+   cout<< c[1] << endl;
+   //int d {3.5f};// 无法编译成功，因为相当于浮点数向整数的转换
+   //二、auto
+   auto value = false;
+   auto ch = "a";
+   //四、引用
+   int value_l = 10;
+   int & refval = value_l; //<==> int* const refval = &value_l地址不变，值可以变 
+   /*
+   int & refval;
+   int &refval = 10;
+   float &refval = value_l; 都是错误的
+   */
+   //五、常量
+   const int var = 7;
+   int &var2 = (int &)var; 
+   var2 = 18;
+   cout<<"var= "<< var << endl;
+   //六、constexpr
+   constexpr int var_l = 1;
+   int val_b = 20;
+   constexpr int var_l1 = function();
+   int var_k = function_l(); //常规调用，不会出错。
+   return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
+}
 
+</code></pre>
+</details>
 
 ## 1.4 范围for、new内存动态分配与nullptr
 #### 一、范围for语句：用于遍历一个序列
@@ -105,6 +184,71 @@ c++中我们不是用printf，使用cout,c++的标准库
     (1) 在if判断的时候, NULL==nullptr
     (2) 对于指针的初始化，用nullptr取代NULL。
 
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include "project3.hpp"
+using namespace std;
+int main()
+{
+    //一、范围for语句
+    int v[] {1,2,3,4,5}; //数组v中每个元素，依次放入x中并打印，打v中每个元素拷贝到x中，并打印x的值。
+    for(auto x : v){
+        cout<< x << endl;
+    }
+    for(auto x : {6,7,8,9,10}){
+        cout<< x << endl;
+    }
+    for(auto &x : v){ //改进，省了拷贝动作，提高程序效率
+        cout<< x << endl;
+    }
+    //二、动态分配问题-malloc/free
+    int *p = NULL;
+    p = (int *)malloc(sizeof(int));  //在堆中分配4个字节的内存
+    if(p != NULL){
+        //分配成功
+        // *p = 50;
+        // cout<<*p<< endl;
+        // free(p); //释放掉，千万不要忘记。
+        int*q = p;  // p==q   0x561216fef280
+        *q++ = 1;   // 0x561216fef284 ==>*(q++): --->*q=1: q++
+        *q++ = 5;
+        cout<<*p<< endl;
+        cout<< *(p+1)<< endl;
+        free(p);
+    }
+    // 二、动态分配问题-new/delete
+    // int *myint = new int; //整型指针变量
+    int *myint = new int(18);
+    if(myint != NULL){
+        *myint = 8;
+        cout<<"*myint: "<<*myint<< endl;
+        delete myint;
+    }
+    int *myint_1 = new int[100]; // 开辟一个大小为100的整型数组空间
+    if(myint_1 != NULL){
+        int *q = myint_1;
+        *q++ = 12;   //[0]=12, 执行完后，这个q其实已经指向了[1]
+        *q++ = 18;   //[1]=18, 执行完后，这个q其实已经指向了[2]
+        cout<< *myint_1<< endl;
+        cout<<*(myint_1+1)<< endl;
+    }
+    delete [] myint_1; //释放数组的空间
+    //三、nullptr
+    char *p_l = NULL;
+    char *q_l = nullptr;
+    // int a = nullptr //错误，因为nullptr表示空指针。
+    int b_l = NULL;
+    if(p_l == nullptr){ //  在if判断的时候,NULL==nullptr
+        cout<<"NULL == nullptr"<< endl;
+    }
+    return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
+}
+
+</code></pre>
+</details>
+
 ## 1.5 结构、权限修饰符与类
 #### 一、结构回顾
     结构：自定义的数据类型
@@ -129,6 +273,57 @@ c++中我们不是用printf，使用cout,c++的标准库
 #### 三、类的组织 - 书写规范
     (1) 类的声明代码会放在一个.h头文件中，头文件可以和类名相同。 eg:student.h
     (2) 类的具体实现代码，放在一个.cpp文件中       eg:student.cpp
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include "project3.hpp"
+using namespace std;
+struct student{
+public:
+// private:    // 私有情况下，number与name外部无法访问，内部的成员函数func可以调用。
+    int number;
+    char name[100];
+    void func(){
+        number++;
+        cout<<"调用成功"<< endl;
+    }
+};
+void function(student tmpstu){ //这里结构体形参只是值传递，拷贝动作，效率低。
+    tmpstu.number = 2000;
+}
+void function_l(student &tmpstu){
+    tmpstu.number = 3000;
+}
+void function_s(student* tmpstu){
+    tmpstu->number = 4000;
+}
+class student_l{
+// private:    // 私有情况下，number与name外部无法访问，内部的成员函数func可以调用。
+    int number;
+    char name[100];
+public:
+    void func(){
+        number++;
+        cout<<"调用成功"<< endl;
+    }
+};
+int main()
+{
+    //一、结构体
+    student student1;
+    student1.number = 1001;
+    student1.func();
+    cout<< student1.number << endl;
+    function(student1);
+    cout<< student1.number << endl;
+    //二、类
+    student_l stu;
+    stu.func();
+    // stu.number = 200; // 错误，因为默认类中的成员变量/成员函数是private
+}
+</code></pre>
+</details>
 
 ## 1.6 函数新特性、inline内联函数与const详解
 #### 一、函数回顾与后置返回类型
@@ -169,6 +364,80 @@ c++中我们不是用printf，使用cout,c++的标准库
 #### 五、函数形参中带有const
     (1) 函数形参中写const，可以防止无意中修改了形参值导致实参值被修改。
     (2) 实参类型可以更灵活。
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include "project3.hpp"
+#include "project2.h"
+using namespace std;
+//一、函数回顾与后置返回类型
+void func(int, int); //前置声明
+void func(int a, int){  // 前置定义
+    return;
+}
+auto func_l(int, int) -> void;  //后置声明
+auto func_l(int a, int) -> void //后置定义
+{
+    return ;
+}
+// // 二、内联函数
+// inline int myfunc(int testv){  //函数定义前加inline，这个普通函数就变成了内联函数。
+//     return 1;
+// }
+//三、杂合函数
+void funca(){}
+void funcb(){
+    return funca();  //可以
+    // return ;  //可以
+    // return void //错误
+}
+int* myfunc_l()
+{
+    int tempvalue_l = 20;
+    return &tempvalue_l;  // 程序有巨大隐患，因为tempvalue是临时变量函数调用完后就释放内存。
+}
+int & myfunc_s(){
+    int tempvalue = 20;
+    return tempvalue;  // 程序有巨大隐患，因为tempvalue是临时变量函数调用完后就释放内存。
+}
+//五、函数形参中带有const
+struct student{
+    int num;
+};
+void fsa(student &stu){
+    stu.num = 100;
+}
+void fsa_l(const student &stu){
+    // stu.num = 100;
+}
+int main()
+{
+    //二、内联函数
+    myfunc(2);
+    return 0;
+    //三、函数杂合用法总结
+    int *p = myfunc_l();
+    // *p = 6; // 你向一个不属于你的地址写入了数据。
+    int &k = myfunc_s();
+    // k = 10; // 你向一个不属于你的地址写入了数据。
+    int s = myfunc_s(); 
+    s = 20; //成功，因为&s的值不等于&tempvalue,所以s的内存是安全的。 
+    //四、const char*、 char const *、 char * const的区别
+    char str[] = "l love you";
+    const char *p_l = str;
+    // *p_l = "Y"; //错误
+    p_l++;
+    //五、函数形参中带有const
+    student abc;
+    abc.num = 101;
+    fsa(abc);
+    cout<< abc.num << endl; //100
+    fsa_l(abc);
+    cout<< abc.num << endl; //101
+}
+</code></pre>
+</details>
 
 ## 1.7 string类型
 #### 一、前言 int, float, char,c++标准库:string,vector
@@ -193,6 +462,67 @@ c++中我们不是用printf，使用cout,c++的标准库
         string s15 = "abc" + "def" + s12; //错误，因为"abc" + "def"不行，类型不能转换。
     (10) 范围for针对string的使用：c++11中提供了范围for: 能够遍历一个序列中的每一个元素。
         string可以看成一个字符序列。
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include <cstring>
+#include "project3.hpp"
+#include "project2.h"
+using namespace std;
+int main()
+{
+    //二、定义和初始化string对象
+    int num = 6;
+    string s0(num, 'a'); //不推荐这种方式，因为系统会创建临时变量。浪费内存资源。
+    //三、string对象的操作
+    //三-(1)
+    string s1;
+    if(s1.empty()){
+        cout<<" s1为空"<< endl;
+    }
+    //三-(2)size()/length()
+    string s2;
+    cout<< s2.size()<< endl;  // 0
+    cout<< s2.length()<< endl; // 0
+    string s3 = "我爱中国";
+    cout<< s3.size()<< endl;  // 12
+    cout<< s3.length()<< endl; // 12
+    string s4 = "I Love China!";
+    cout<< s4.size() << endl;  // 13              
+    cout<< s4.length() << endl; // 13
+    char str[100];
+    strcpy(str, s4.c_str());
+    string s10(str);
+     cout<< s10 << endl; // 
+    //三-(3)s[n]:
+    string s5 = "l love china!";
+    if(s5.size()){
+        cout<< s5[4] << endl;  // v
+        s5[4] = 'w';
+    }
+    cout<< s5 << endl;
+    //三-(4)s1+s2:字符串的连接
+    string s6 = "l";
+    string s7 = "love";
+    string s8 = s6 + s7;
+    cout<< s8 << endl;
+    //三-(8)s.c_str()
+    string s9 = "abc";
+    const char *p = s9.c_str();
+    char ch[100];
+    strcpy(ch, p);
+    cout<< ch << endl;
+    //三-(10)范围for针对string的使用
+    string s16 = "l love you";
+    for(auto &c : s16){  //auto:类型自动推断, char
+        cout<< c << endl; //每次输出一个字符。
+    }
+}
+
+</code></pre>
+</details>
+
 
 ## 1.8 vector的使用
 #### 一、vector类型简介：标准库：集合或在动态数组。我们可以把若干对象放在里边
@@ -234,6 +564,64 @@ c++中我们不是用printf，使用cout,c++的标准库
     (9) 范围for的错误应用
     注意：在循环遍历中，for语句中(遍历一个容器等等类似操作)，千万不要改动vector容器的容量，增加/删除都不可以。
     因为在容器中最后一个元素存在遍历结束指针，增加/删除元素会造成混乱。
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include <string>
+#include <vector>
+#include "project3.hpp"
+#include "project2.h"
+using namespace std;
+using std::vector;
+int main()
+{
+   //二、定义和初始化vector对象
+   //二-(1)
+   vector<string> mystr;
+   mystr.push_back("abcdef");
+   //二-(2)
+   vector<string> mystr2(mystr); //把mystr元素拷贝给了mystr2;
+   vector<string> mystr3 = mystr; //把mystr元素拷贝给了mystr2;
+   //二-(3)
+   vector<string> mystr4 = {"aaa", "bbb", "ccc"};
+   //二-(4)
+   vector<int> vec(15, -200);
+   vector<string> vec_l(5, "hello");
+   //二-(5)
+   vector<int> vec_s(10); 
+   vector<int> vec_b{10}; 
+   vector<string> vec_m{10};  
+   vector<string> vec_n{10, "hello"}; 
+   vector<int> vec_x{10, 1};   
+   //三、vector对象上的操作
+   //三-(1)
+   vector<int> ivec;
+   if(ivec.empty()){
+      cout<<"ivec为空"<< endl;
+   }
+   //三-(2)
+   ivec.push_back(1);
+   ivec.push_back(2);
+   //三-(6)
+   vector<int> ivec2;
+   ivec2 = ivec;  // 得到ivec中的元素， ivec2原来元素消失。
+   ivec2 = {1,2,3,4,5};  // {}中值替代ivec2原有值，
+   cout<< ivec2.size() << endl;   
+   //三-(8)
+   vector<int> vecvalue{1,2,3,4,5};
+   for(auto &vecitem : vecvalue){
+      vecitem *= 2;
+      cout<< vecitem<< endl;
+   }
+   //三-(9)
+   for(auto vecitem : vecvalue){
+      // vecitem.push_back(88); //错误，导致输出彻底乱套
+      cout<< vecitem<< endl;
+   }
+}
+</code></pre>
+</details>
 
     
 ## 1.9 迭代器的应用
@@ -278,6 +666,101 @@ c++中我们不是用printf，使用cout,c++的标准库
             *iter = toupper(*iter);
         }
     (2) vector 容器常用操作与内存释放
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include "project3.hpp"
+#include "project2.h"
+using namespace std;
+using std::vector;
+struct student{
+    int num;
+};
+struct student_l{
+    int number;
+    string str_l;
+};
+int main()
+{
+    //二、迭代器的类型
+    vector<int> iv = {100,200,300};
+    vector<int>::iterator iter_v; //定以迭代器。
+    //三、迭代器begin()/end()操作，反向迭代器rbegin()/rend()操作
+    //三-(4)
+    vector<int> iv2;
+    vector<int>::iterator iterbegin = iv2.begin();
+    vector<int>::iterator iterend = iv2.end();
+    if(iterbegin == iterend){
+        cout<<"容器iv2为空"<< endl;
+    }
+    //三-(5)
+    vector<int> iv3 = {100,200,300};
+    for(vector<int>::iterator iter = iv3.begin(); iter != iv3.end(); iter++){
+        cout<< *iter << endl;
+    }
+    //三-(6)
+    for(vector<int>::reverse_iterator riter = iv3.rbegin(); riter != iv3.rend(); riter++){
+        cout<< *riter << endl;
+    }
+    //四、迭代器运算符
+    //四-(5)
+    cout<<"四"<< endl;
+    vector<student> sv;
+    student mystu;
+    mystu.num = 100;
+    sv.push_back(mystu);
+    vector<student>::iterator iter_s;
+    iter_s = sv.begin();
+    cout<< (*iter_s).num << endl;
+    cout<< iter_s->num << endl;
+    //五、const_iterator迭代器
+    cout<<"五"<< endl;
+    vector<int> iv4 = {100,200,300};
+    vector<int>::const_iterator iter_1;
+    for(iter_1 = iv4.begin(); iter_1 != iv4.end(); ++iter_1){
+        // *iter_1 = 4;   常量迭代器不能赋值。
+        cout<< *iter_1 << endl;
+    }
+    //六、迭代器失效
+    cout<<"六"<< endl;
+    vector<int> vecvalue{1,2,3,4,5};
+    for(auto vecitem : vecvalue){
+        // vecvalue.push_back(888); // 不能在for遍历容器时候增加或在删除容器元素
+        cout<< vecitem << endl;
+    }
+    for(auto beg = vecvalue.begin(), end = vecvalue.end(); beg != end; ++beg){
+        // vecvalue.push_back(888);  //不能在for遍历容器时候增加或在删除容器元素
+        cout<< *beg << endl;
+    }
+    //七、范例演示
+    //七-(1)
+    string str("l love you");
+    for(auto iter = str.begin(); iter != str.end(); ++iter){
+        *iter = toupper(*iter);
+    }
+    cout<< str << endl;
+    //七-(2)
+    student_l *pconf1 = new student_l;
+    student_l *pconf2 = new student_l;
+    cout<< "pconf1: "<< pconf1 << endl;
+    cout<< "pconf2: "<< pconf2 << endl;
+    vector<student_l *> conflist;
+    conflist.push_back(pconf1);
+    conflist.push_back(pconf2);
+    std::vector<student_l *>::iterator pos;
+    for(pos = conflist.begin(); pos != conflist.end(); ++pos){
+        // delete (*pos); //*pos是new出的地址。
+        cout<< *pos << endl;  
+    }
+    conflist.clear();
+    return 0;
+}
+
+</code></pre>
+</details>
 
 
 ## 1.10 类型转换 static_cast、const_cast、reinterpret_cast
@@ -322,3 +805,47 @@ c++中我们不是用printf，使用cout,c++的标准库
         b) 可以从一个指针类型转换成一个整型。
     总结：强制类型转换，不建议使用，强制类型转换能够抑制编译器报错。
         如果实在需要使用类型转换，不要使用c语言风格的类型转换了，而用c++风格的类型转换。
+<details>
+<summary><font size="4" color="orange">Show Code</font></summary> 
+<pre><code class="language-cpp">
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include "project3.hpp"
+#include "project2.h"
+using namespace std;
+using std::vector;
+class A{};
+class B : public A{};
+int main()
+{
+    //二、显式类型转换
+    //二-(2)-a
+    double f = 100.34f;
+    int i1 = (int)f;   //c风格的
+    int i2 = static_cast< int>(f);   //c++风格的类型转换    
+    //二-(2)-b
+    B b;    
+    A a = static_cast< A >(b);
+    //二-(2)-c
+    int i        = 10;
+    int *p    = & i;
+    void *q = static_cast< void *>(p);
+    int *db  = static_cast< int *>(q);
+    //二-(4)
+    const int ai = 90;
+    // int ai2 = const_cast< int>(ai);  // ai不是指针也不是引用不能转换。
+    const int *pai = & ai;
+    int *pai2 = const_cast< int *>(pai);
+    cout<< *pai2 << endl;
+    //二-(5)-a
+    int x = 10;
+    int *pi = & x;
+    int *pi2 = reinterpret_cast< int *>(&x);
+    char *pc = reinterpret_cast< char *>(pi); 
+    void * pvoid = reinterpret_cast< void *>(pi);
+    int *pi3 = reinterpret_cast< int *>(pvoid);
+    return 0;
+}
+</code></pre>
+</details>
