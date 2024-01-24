@@ -1,0 +1,43 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">            
+            <div class="text-secondary">
+                &copy; 2018-2024 
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                李双双
+            </div>
+            &copy; {{ now.Format "2006"}} {{ .Site.Params.copyright }} {{ .Site.Params.terms.copyright | default "All Rights Reserved" }}
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and Hugo Profile
+            </div>
+            <div class="busuanzi-site-uv-and-pv">
+                <span id="busuanzi_container_site_uv">
+                    {{- with .Site.Params.busuanziSiteUVText -}}
+                        {{- . -}} 
+                        &nbsp; 
+                    {{- end -}}
+
+                    {{- print `<span id="busuanzi_value_site_uv"></span>` | safeHTML -}}
+                </span>
+
+                {{- print "&nbsp;|&nbsp;" | safeHTML -}}
+
+                <span id="busuanzi_container_site_pv"> 
+                    {{- with .Site.Params.busuanziSitePVText -}}
+                        {{- . -}}
+                        &nbsp;
+                    {{- end -}}
+
+                    {{- print `<span id="busuanzi_value_site_pv"></span>` | safeHTML -}}
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>
