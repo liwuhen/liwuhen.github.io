@@ -22,10 +22,10 @@ defaultContentLanguageInSubdir = false
 pluralizeListTitles = false
 
 # 摘要的字数限制
-summaryLength = 42
+summaryLength = 150
 
 # 是否开启 GitHub 风格的 Emoji 书写方式
-enableEmoji = true
+enableEmoji = false
 
 # 脚注的返回链接中的文本
 footnoteReturnLinkContents = "↩"
@@ -37,7 +37,7 @@ enableGitInfo = false
 enableRobotsTXT = true
 
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
-paginate = 5
+paginate = 10
 
 # URL 相关
 disablePathToLower = false
@@ -195,14 +195,21 @@ uglyURLs = false
     [[menu.main]]
         url = "/Parking/"
         name = "自动驾驶泊车技术"
-        weight = 2
+        weight = 3
         pre = "internal"
         post = "wpexplorer"
         identifier = "Parking"
     [[menu.main]]
+        url = "/Programming_Languages/"
+        name = "编程语言"
+        weight = 4
+        pre = "internal"
+        post = "wpexplorer"
+        identifier = "Programming_Languages"
+    [[menu.main]]
         url = "/about/"
         name = "关于"
-        weight = 3
+        weight = 5
         pre = "internal"
         post = "user-circle"
         identifier = "about"
@@ -387,7 +394,8 @@ uglyURLs = false
     # 列表页面
 
     # 宽度
-    listWidth = 36
+    listWidth = 72
+    
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -651,7 +659,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 36
+    postWidth = 72
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
