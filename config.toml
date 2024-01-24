@@ -204,7 +204,7 @@ uglyURLs = false
         name = "编程语言"
         weight = 4
         pre = "internal"
-        post = "wpexplorer"
+        post = "monkey"
         identifier = "Programming_Languages"
     [[menu.main]]
         url = "/about/"
