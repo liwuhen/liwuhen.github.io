@@ -5,8 +5,8 @@ draft: false
 ---
 
 ## 1.1 命名空间
-#### 一、命令空间概念
-命令空间为了防止名字冲突而引入的一种机制。系统中可以定义多个命名空间，每个命名空间都有自己的名字，名字可以不同。大家可以把命名空间看成一个作用域，我们在这个命名空间里定义函数，和另一个命名空间中函数即便同名，也不影响。
+#### 一、命名空间概念
+命名空间为了防止名字冲突而引入的一种机制。系统中可以定义多个命名空间，每个命名空间都有自己的名字，名字可以不同。大家可以把命名空间看成一个作用域，我们在这个命名空间里定义函数，和另一个命名空间中函数即便同名，也不影响。
     
 >
     (1) 命名空间定义：
@@ -16,11 +16,10 @@ draft: false
     (2) 命名空间的定义可以不连续，甚至可以写在多个文件中。
     (3) 外界如何访问命名空间中的函数?
     格式：命名空间名::实体名          ----其中这::叫 ‘作用于运算符’
-
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
-''' C++代码
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 namespace zhangsan
@@ -36,7 +35,7 @@ int main()
     lisi::radius(); 
     return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
 }
-</code></pre>
+```
 </details>
 
 ## 1.2 输入输出流
@@ -49,8 +48,8 @@ c++中我们不是用printf，使用cout,c++的标准库
 (3) std::cin 基本输入  >>输入运算符   <<输出运算符
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
-''' C++代码
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 int main()
@@ -58,6 +57,7 @@ int main()
     std::cout<<"testing"<< std::endl;
     return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
 }
+```
 </code></pre>
 </details>
     
@@ -89,8 +89,8 @@ int main()
     (4) 声明为constexpr的变量一定是一个const变量，而且必须用常量表达式初始化
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
-''' C++代码
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 using namespace std;
@@ -149,7 +149,7 @@ int main()
    int var_k = function_l(); //常规调用，不会出错。
    return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
 }
-
+```
 </code></pre>
 </details>
 
@@ -186,7 +186,8 @@ int main()
 
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 using namespace std;
@@ -245,7 +246,7 @@ int main()
     }
     return 0;  // main()中返回值一般表示状态，返回0表示成功，非0一般不表示错误
 }
-
+```
 </code></pre>
 </details>
 
@@ -275,7 +276,8 @@ int main()
     (2) 类的具体实现代码，放在一个.cpp文件中       eg:student.cpp
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 using namespace std;
@@ -322,6 +324,7 @@ int main()
     stu.func();
     // stu.number = 200; // 错误，因为默认类中的成员变量/成员函数是private
 }
+```
 </code></pre>
 </details>
 
@@ -366,7 +369,8 @@ int main()
     (2) 实参类型可以更灵活。
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include "project3.hpp"
 #include "project2.h"
@@ -436,6 +440,7 @@ int main()
     fsa_l(abc);
     cout<< abc.num << endl; //101
 }
+```
 </code></pre>
 </details>
 
@@ -464,7 +469,8 @@ int main()
         string可以看成一个字符序列。
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include <cstring>
 #include "project3.hpp"
@@ -519,7 +525,7 @@ int main()
         cout<< c << endl; //每次输出一个字符。
     }
 }
-
+```
 </code></pre>
 </details>
 
@@ -566,7 +572,8 @@ int main()
     因为在容器中最后一个元素存在遍历结束指针，增加/删除元素会造成混乱。
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include <string>
 #include <vector>
@@ -620,6 +627,7 @@ int main()
       cout<< vecitem<< endl;
    }
 }
+```
 </code></pre>
 </details>
 
@@ -668,7 +676,8 @@ int main()
     (2) vector 容器常用操作与内存释放
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include <cstring>
 #include <vector>
@@ -758,7 +767,7 @@ int main()
     conflist.clear();
     return 0;
 }
-
+```
 </code></pre>
 </details>
 
@@ -807,7 +816,8 @@ int main()
         如果实在需要使用类型转换，不要使用c语言风格的类型转换了，而用c++风格的类型转换。
 <details>
 <summary><font size="4" color="orange">Show Code</font></summary> 
-<pre><code class="language-cpp">
+
+``` c++
 #include <iostream>
 #include <cstring>
 #include <vector>
@@ -847,5 +857,6 @@ int main()
     int *pi3 = reinterpret_cast< int *>(pvoid);
     return 0;
 }
+```
 </code></pre>
 </details>
