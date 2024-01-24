@@ -16,28 +16,30 @@
                 </span>
                 and Hugo Profile
             </div>
-            <div class="busuanzi-site-uv-and-pv">
-                <span id="busuanzi_container_site_uv">
-                    {{- with .Site.Params.busuanziSiteUVText -}}
-                        {{- . -}} 
-                        &nbsp; 
-                    {{- end -}}
 
-                    {{- print `<span id="busuanzi_value_site_uv"></span>` | safeHTML -}}
-                </span>
+            {{- if and .Site.Params.displayBusuanziSiteUVAndPV (eq hugo.Environment "production") }}
+                <div class="busuanzi-site-uv-and-pv">
+                    <span id="busuanzi_container_site_uv">
+                        {{- with .Site.Params.busuanziSiteUVText -}}
+                            {{- . -}} 
+                            &nbsp; 
+                        {{- end -}}
 
-                {{- print "&nbsp;|&nbsp;" | safeHTML -}}
+                        {{- print `<span id="busuanzi_value_site_uv"></span>` | safeHTML -}}
+                    </span>
 
-                <span id="busuanzi_container_site_pv"> 
-                    {{- with .Site.Params.busuanziSitePVText -}}
-                        {{- . -}}
-                        &nbsp;
-                    {{- end -}}
+                    {{- print "&nbsp;|&nbsp;" | safeHTML -}}
 
-                    {{- print `<span id="busuanzi_value_site_pv"></span>` | safeHTML -}}
-                </span>
-            </div>
+                    <span id="busuanzi_container_site_pv"> 
+                        {{- with .Site.Params.busuanziSitePVText -}}
+                            {{- . -}}
+                            &nbsp;
+                        {{- end -}}
 
+                        {{- print `<span id="busuanzi_value_site_pv"></span>` | safeHTML -}}
+                    </span>
+                </div>
+            {{- end }}
         </div>
     </div>
 </div>
