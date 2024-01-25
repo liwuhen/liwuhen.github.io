@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/style.css">
 {{ end }}
 
+<!-- busuanzi -->
+{{- if .Site.Params.busuanzi.enable -}}
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+{{- end -}}
+
 <style>
     :root {
         --text-color: {{ .Site.Params.color.textColor | default "#343a40" }};
