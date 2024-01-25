@@ -2,6 +2,7 @@
 <section id="hero" class="py-5 align-middle">
     <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
         <div class="row">
+
             <div class="col-sm-12 col-md-12 col-lg-8 content {{ if .Site.Params.animate }}animate{{ end }}" id="primary-font">
                 <span class="subtitle">
                     {{ .Site.Params.hero.intro }}
@@ -15,6 +16,16 @@
                 <p class="hero-content">
                     {{ .Site.Params.hero.content | markdownify }}
                 </p>
+
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-12 pt-3 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
+                        <img src="{{ .Site.Params.hero.topimage }}"
+                            class="img-thumbnail mx-auto{{ if .Site.Params.hero.roundImage }} rounded-circle{{ end }}"
+                            alt=""
+                        >
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-auto h-100">
                         {{ if .Site.Params.hero.button.enable }}
@@ -30,10 +41,12 @@
                         {{- partial "sections/hero/social.html" . -}}
                     </div>
                 </div>
+
             </div>
+
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-9 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
+                    <div class="col-sm-12 col-md-10 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
                         <img src="{{ .Site.Params.hero.image }}"
                             class="img-thumbnail mx-auto{{ if .Site.Params.hero.roundImage }} rounded-circle{{ end }}"
                             alt=""
@@ -43,8 +56,8 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-9 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
-                    <img src="{{ .Site.Params.hero.image }}"
+                <div class="col-sm-12 col-md-12 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
+                    <img src="{{ .Site.Params.hero.buttonimage }}"
                         class="img-thumbnail mx-auto{{ if .Site.Params.hero.roundImage }} rounded-circle{{ end }}"
                         alt=""
                     >

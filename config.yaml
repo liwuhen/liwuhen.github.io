@@ -77,7 +77,7 @@ params:
   title: "璇玑"
   description: Text about my cool site
   # staticPath: ""  # The path to serve the static files from
-  favicon: "/images/fav.png"
+  favicon: "/images/img006.png"
 
   # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
   # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
@@ -146,11 +146,14 @@ params:
   # 主页介绍
   hero:
     enable: true
-    intro: "Hi, my name is"
-    title: "Isabella."
-    subtitle: "I build things for the web"
-    content: A passionate web app developer. I tend to make use of modern web technologies to build websites that looks great, feels fantastic, and functions correctly.
-    image: /images/converter.jpg
+    intro:  我认出了风暴，而激动如大海。我舒展开又跌回我自己，又把自己抛出去，并且独个儿置身在伟大的风暴里。
+    # title: "自动驾驶"
+    subtitle: "高阶智能的汽车机器人"
+    content: "开源的伟大之处在于它汇集了全人类的智慧和创造力, 为了延续并发扬开源精神, 
+             此博客主旨分享技术、热爱技术、追求技术。"
+    topimage: /images/img003.png
+    image: /images/img005.png
+    buttonimage: /images/img004.png
     bottomImage:
       enable: false
     # roundImage: true # Make hero image circular | default false
