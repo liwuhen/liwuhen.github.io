@@ -46,12 +46,12 @@ Menus:
     - identifier: life
       name: 生活
       title: "Life"
-      url: /Programming_Languages/
+      url: /life/
       weight: 4
-    - identifier: about
+    - identifier: About
       name: 关于
-      title: "about"
-      url: /Programming_Languages/
+      title: "About Blog"
+      url: /About_Blog/
       weight: 5
     #Dropdown menu
     # - identifier: dropdown
@@ -175,7 +175,7 @@ params:
 
   # About
   about:
-    enable: true
+    enable: false
     # title: "关于"
     image: /images/me.png
     content: |-
