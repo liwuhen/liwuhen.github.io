@@ -1,10 +1,943 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta http-equiv=accept-ch content="DPR, Viewport-Width, Width"><link rel=icon href=/images/img006.png type=image/gif><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" media=print onload='this.media="all"'><noscript><link href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel=stylesheet></noscript><link rel=stylesheet href=/css/font.css media=all><meta property="og:title" content="C++类二篇"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="https://liwuhen.cn/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/"><meta property="article:section" content="Programming_Languages"><meta property="article:published_time" content="2024-01-26T17:38:13+00:00"><meta property="article:modified_time" content="2024-01-26T17:38:13+00:00"><meta property="og:site_name" content="璇玑"><meta name=twitter:card content="summary"><meta name=twitter:title content="C++类二篇"><meta name=twitter:description content><link rel=stylesheet href=/bootstrap-5/css/bootstrap.min.css media=all><link rel=stylesheet href=/css/header.css media=all><link rel=stylesheet href=/css/footer.css media=all><link rel=stylesheet href=/css/theme.css media=all><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><meta name=referrer content="no-referrer-when-downgrade"><style>:root{--text-color:#343a40;--text-secondary-color:#6c757d;--background-color:#eaedf0;--secondary-background-color:#64ffda1a;--primary-color:#007bff;--secondary-color:#f8f9fa;--text-color-dark:#e4e6eb;--text-secondary-color-dark:#b0b3b8;--background-color-dark:#18191a;--secondary-background-color-dark:#212529;--primary-color-dark:#ffffff;--secondary-color-dark:#212529}body{font-size:1rem;font-weight:400;line-height:1.5;text-align:left}html{background-color:var(--background-color)!important}body::-webkit-scrollbar{height:0;width:8px;background-color:var(--background-color)}::-webkit-scrollbar-track{border-radius:1rem}::-webkit-scrollbar-thumb{border-radius:1rem;background:#b0b0b0;outline:1px solid var(--background-color)}#search-content::-webkit-scrollbar{width:.5em;height:.1em;background-color:var(--background-color)}</style><meta name=description content><link rel=stylesheet href=/css/single.css><script defer src=/fontawesome-6/all-6.4.2.js></script><title>C++类二篇 | 璇玑</title></head><body class=light><script>let localStorageValue=localStorage.getItem("pref-theme"),mediaQuery=window.matchMedia("(prefers-color-scheme: dark)").matches;switch(localStorageValue){case"dark":document.body.classList.add("dark");break;case"light":document.body.classList.remove("dark");break;default:mediaQuery&&document.body.classList.add("dark");break}</script><header id=profileHeader><nav class="pt-3 navbar navbar-expand-lg animate"><div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5"><a class="navbar-brand primary-font text-wrap" href=/><img src=/images/img006.png width=30 height=30 class="d-inline-block align-top">
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta http-equiv=accept-ch content="DPR, Viewport-Width, Width"><link rel=icon href=/images/img006.png type=image/gif><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" media=print onload='this.media="all"'><noscript><link href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel=stylesheet></noscript><link rel=stylesheet href=/css/font.css media=all><meta property="og:title" content="C++类二篇"><meta property="og:description" content="五 拷贝构造函数 5.1 默认情况下，类对象的拷贝是每个成员变量逐个拷贝。 5.2 拷贝构造函数 (1) 如果一个类的构造函数，它的第一个参数是所属的类类对象引用，如果还有其他额外参数，这些额外参数都有默认值。 函数默认参数都必须放在函数声明中，除非该函数没有函数声明。 (2) 拷贝构造函数：在一定的时机被系统自动调用，时机：进行对象复制的时候 = (3) 建议拷贝构造函数第一个参数带const, 且一般不要声明explicit来禁止隐式类型转换。 (4)（一中，默认情况下，类对象的拷贝是每个成员变量逐个拷贝。）成员变量逐个拷贝功能。 因为我们定义的拷贝构造函数存在而失去作用。我们定义的拷贝构造函数取代了系统默认的拷贝构造函数。 (5) 当自定义拷贝构造函数，且类内存在有参构造函数时，不能使用Time myTime01=Time(12,12,12); 初始化类对象。 5.3 系统默认的拷贝构造函数 (1) 如果我们没有定义一个拷贝构造函数，编译器会帮我们定义一个拷贝构造函数 (2) 编译器给我们定义的叫“合成拷贝构造函数” --作用将拷贝构造函数中第一个参数类对象的引用的成员逐个拷贝到正在创建的对象中。 (3) 默认拷贝构造：每个成员的类型决定自身如何拷贝，比如说成员属性是int类型，那么就是直接的值拷贝。 如果成员是其他类对象，就会调用类的拷贝构造函数。 (4) 如果自己定义了拷贝构造函数，就会取代系统的拷贝构造函数，那么就需要在拷贝构造函数中赋值。 以防止出现未初始化的成员变量。 5.4 还有一些情况会调用拷贝构造函数的调用 (1) 函数传递参数 将一个实参传递给一个非引用类型形参，会先调用构造函数构造出对象，然后调用拷贝构造函数。 (2) 函数返回值是一个局部对象类对象，会进行临时对象的拷贝，调用拷贝构造函数创建一个临时对象返回。 5.5 赋值与初始化的区别 (1) 赋值与初始化的区别：初始化是指创建这个对象的时刻对它进行一些成员变量的定义、赋值等， 例如常见的初始化有拷贝构造初始化，默认构造初始化，有参构造初始化；赋值是指对已经初始化好了的对象进行值的修改变动， 将已经初始化了的一个对象的参数赋给另一个已经初始化了的对象。 //person是用户自定义类类型 person p1=p2;//此处为拷贝初始化，即创建一个p1对象，使用创建好的p2对象对它进行拷贝初始化 person p3;//调用默认构造函数初始化p1对象 p3=p1;//将p1对象赋值给已经初始化好的p3对象 person p4(30,&#34;老王&#34;);//调用有参构造初始化p4对象 p4=p1;//将p1的成员数据赋值给p4，即改变p4的年龄与姓名 (2) 调用的是拷贝构造函数还是赋值运算符，主要是看是否有新的对象实例产生。 如果产生了新的对象实例，那调用的就是拷贝构造函数；如果没有，那就是对已有的对象赋值，调用的是赋值运算符。 Show Code #include <iostream> #include <cstdlib> #include <string> #include <vector> #include &#34;project3."><meta property="og:type" content="article"><meta property="og:url" content="https://liwuhen.cn/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/"><meta property="article:section" content="Programming_Languages"><meta property="article:published_time" content="2024-01-26T17:38:13+00:00"><meta property="article:modified_time" content="2024-01-26T17:38:13+00:00"><meta property="og:site_name" content="璇玑"><meta name=twitter:card content="summary"><meta name=twitter:title content="C++类二篇"><meta name=twitter:description content="五 拷贝构造函数 5.1 默认情况下，类对象的拷贝是每个成员变量逐个拷贝。 5.2 拷贝构造函数 (1) 如果一个类的构造函数，它的第一个参数是所属的类类对象引用，如果还有其他额外参数，这些额外参数都有默认值。 函数默认参数都必须放在函数声明中，除非该函数没有函数声明。 (2) 拷贝构造函数：在一定的时机被系统自动调用，时机：进行对象复制的时候 = (3) 建议拷贝构造函数第一个参数带const, 且一般不要声明explicit来禁止隐式类型转换。 (4)（一中，默认情况下，类对象的拷贝是每个成员变量逐个拷贝。）成员变量逐个拷贝功能。 因为我们定义的拷贝构造函数存在而失去作用。我们定义的拷贝构造函数取代了系统默认的拷贝构造函数。 (5) 当自定义拷贝构造函数，且类内存在有参构造函数时，不能使用Time myTime01=Time(12,12,12); 初始化类对象。 5.3 系统默认的拷贝构造函数 (1) 如果我们没有定义一个拷贝构造函数，编译器会帮我们定义一个拷贝构造函数 (2) 编译器给我们定义的叫“合成拷贝构造函数” --作用将拷贝构造函数中第一个参数类对象的引用的成员逐个拷贝到正在创建的对象中。 (3) 默认拷贝构造：每个成员的类型决定自身如何拷贝，比如说成员属性是int类型，那么就是直接的值拷贝。 如果成员是其他类对象，就会调用类的拷贝构造函数。 (4) 如果自己定义了拷贝构造函数，就会取代系统的拷贝构造函数，那么就需要在拷贝构造函数中赋值。 以防止出现未初始化的成员变量。 5.4 还有一些情况会调用拷贝构造函数的调用 (1) 函数传递参数 将一个实参传递给一个非引用类型形参，会先调用构造函数构造出对象，然后调用拷贝构造函数。 (2) 函数返回值是一个局部对象类对象，会进行临时对象的拷贝，调用拷贝构造函数创建一个临时对象返回。 5.5 赋值与初始化的区别 (1) 赋值与初始化的区别：初始化是指创建这个对象的时刻对它进行一些成员变量的定义、赋值等， 例如常见的初始化有拷贝构造初始化，默认构造初始化，有参构造初始化；赋值是指对已经初始化好了的对象进行值的修改变动， 将已经初始化了的一个对象的参数赋给另一个已经初始化了的对象。 //person是用户自定义类类型 person p1=p2;//此处为拷贝初始化，即创建一个p1对象，使用创建好的p2对象对它进行拷贝初始化 person p3;//调用默认构造函数初始化p1对象 p3=p1;//将p1对象赋值给已经初始化好的p3对象 person p4(30,&#34;老王&#34;);//调用有参构造初始化p4对象 p4=p1;//将p1的成员数据赋值给p4，即改变p4的年龄与姓名 (2) 调用的是拷贝构造函数还是赋值运算符，主要是看是否有新的对象实例产生。 如果产生了新的对象实例，那调用的就是拷贝构造函数；如果没有，那就是对已有的对象赋值，调用的是赋值运算符。 Show Code #include <iostream> #include <cstdlib> #include <string> #include <vector> #include &#34;project3."><link rel=stylesheet href=/bootstrap-5/css/bootstrap.min.css media=all><link rel=stylesheet href=/css/header.css media=all><link rel=stylesheet href=/css/footer.css media=all><link rel=stylesheet href=/css/theme.css media=all><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><meta name=referrer content="no-referrer-when-downgrade"><style>:root{--text-color:#343a40;--text-secondary-color:#6c757d;--background-color:#eaedf0;--secondary-background-color:#64ffda1a;--primary-color:#007bff;--secondary-color:#f8f9fa;--text-color-dark:#e4e6eb;--text-secondary-color-dark:#b0b3b8;--background-color-dark:#18191a;--secondary-background-color-dark:#212529;--primary-color-dark:#ffffff;--secondary-color-dark:#212529}body{font-size:1rem;font-weight:400;line-height:1.5;text-align:left}html{background-color:var(--background-color)!important}body::-webkit-scrollbar{height:0;width:8px;background-color:var(--background-color)}::-webkit-scrollbar-track{border-radius:1rem}::-webkit-scrollbar-thumb{border-radius:1rem;background:#b0b0b0;outline:1px solid var(--background-color)}#search-content::-webkit-scrollbar{width:.5em;height:.1em;background-color:var(--background-color)}</style><meta name=description content><link rel=stylesheet href=/css/single.css><script defer src=/fontawesome-6/all-6.4.2.js></script><title>C++类二篇 | 璇玑</title></head><body class=light><script>let localStorageValue=localStorage.getItem("pref-theme"),mediaQuery=window.matchMedia("(prefers-color-scheme: dark)").matches;switch(localStorageValue){case"dark":document.body.classList.add("dark");break;case"light":document.body.classList.remove("dark");break;default:mediaQuery&&document.body.classList.add("dark");break}</script><header id=profileHeader><nav class="pt-3 navbar navbar-expand-lg animate"><div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5"><a class="navbar-brand primary-font text-wrap" href=/><img src=/images/img006.png width=30 height=30 class="d-inline-block align-top">
 璇玑</a><div><input id=search autocomplete=off class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation"><svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24" data-view-component="true"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"/></svg></button><div class="collapse navbar-collapse text-wrap primary-font" id=navbarContent><ul class="navbar-nav ms-auto text-center"><li class="nav-item navbar-text d-block d-md-none"><div class=nav-link><input id=search autocomplete=off class="form-control mr-sm-2" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div></li><li class="nav-item navbar-text"><a class=nav-link href=/noa/ title=NOA>自动驾驶行车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/parking/ title=Parking>自动驾驶泊车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/programming_languages/ title="Programming Languages">编程语言</a></li><li class="nav-item navbar-text"><a class=nav-link href=/life/ title=Life>生活</a></li><li class="nav-item navbar-text"><a class=nav-link href=/about_blog/ title="About Blog">关于</a></li><li class="nav-item navbar-text"><div class=text-center><button id=theme-toggle><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></li></ul></div></div></nav></header><div id=content><section id=single><div class=container><div class="row justify-content-center"><div class="col-sm-12 col-md-12 col-lg-9"><div class=pr-lg-4><div class="title mb-5"><h1 class="text-center mb-4">C++类二篇</h1><div class=text-center>李双双
 <small>|</small>
 Jan 26, 2024
-<span id=readingTime>min read</span></div></div><div class=featured-image><img class="img-fluid mx-auto d-block" src=/images/CPlusPlus1.png alt=C++类二篇></div><article class="page-content p-2"></article></div></div><div class="col-sm-12 col-md-12 col-lg-3"><div id=stickySideBar class=sticky-sidebar><aside class=toc><h5>Table Of Contents</h5><div class=toc-content><nav id=TableOfContents></nav></div></aside><aside class=social><h5>Social</h5><div class=social-content><ul class=list-inline><li class="list-inline-item text-center"><a target=_blank href="https://twitter.com/share?text=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87&url=https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f"><i class="fab fa-twitter"></i></a></li><li class="list-inline-item text-center"><a target=_blank href="https://api.whatsapp.com/send?text=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87: https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f"><i class="fab fa-whatsapp"></i></a></li><li class="list-inline-item text-center"><a target=_blank href='mailto:?subject=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87&amp;body=liwuhen5788%40gmail.com https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f'><i class="fa fa-envelope"></i></a></li></ul></div></aside></div></div></div><div class=row><div class="col-sm-12 col-md-12 col-lg-9 p-4"></div></div></div><button class="p-2 px-3" onclick=topFunction() id=topScroll>
+<span id=readingTime>min read</span></div></div><div class=featured-image><img class="img-fluid mx-auto d-block" src=/images/CPlusPlus1.png alt=C++类二篇></div><article class="page-content p-2"><h2 id=五-拷贝构造函数>五 拷贝构造函数</h2><h4 id=51-默认情况下类对象的拷贝是每个成员变量逐个拷贝>5.1 默认情况下，类对象的拷贝是每个成员变量逐个拷贝。</h4><h4 id=52-拷贝构造函数>5.2 拷贝构造函数</h4><pre><code>(1) 如果一个类的构造函数，它的第一个参数是所属的类类对象引用，如果还有其他额外参数，这些额外参数都有默认值。
+	函数默认参数都必须放在函数声明中，除非该函数没有函数声明。
+(2) 拷贝构造函数：在一定的时机被系统自动调用，时机：进行对象复制的时候 =
+(3) 建议拷贝构造函数第一个参数带const, 且一般不要声明explicit来禁止隐式类型转换。
+(4)（一中，默认情况下，类对象的拷贝是每个成员变量逐个拷贝。）成员变量逐个拷贝功能。
+    因为我们定义的拷贝构造函数存在而失去作用。我们定义的拷贝构造函数取代了系统默认的拷贝构造函数。
+(5) 当自定义拷贝构造函数，且类内存在有参构造函数时，不能使用Time myTime01=Time(12,12,12); 初始化类对象。
+</code></pre><h4 id=53-系统默认的拷贝构造函数>5.3 系统默认的拷贝构造函数</h4><pre><code>(1) 如果我们没有定义一个拷贝构造函数，编译器会帮我们定义一个拷贝构造函数
+(2) 编译器给我们定义的叫“合成拷贝构造函数”
+	--作用将拷贝构造函数中第一个参数类对象的引用的成员逐个拷贝到正在创建的对象中。
+(3) 默认拷贝构造：每个成员的类型决定自身如何拷贝，比如说成员属性是int类型，那么就是直接的值拷贝。
+    如果成员是其他类对象，就会调用类的拷贝构造函数。
+(4) 如果自己定义了拷贝构造函数，就会取代系统的拷贝构造函数，那么就需要在拷贝构造函数中赋值。
+    以防止出现未初始化的成员变量。
+</code></pre><h4 id=54-还有一些情况会调用拷贝构造函数的调用>5.4 还有一些情况会调用拷贝构造函数的调用</h4><pre><code>(1) 函数传递参数
+	将一个实参传递给一个非引用类型形参，会先调用构造函数构造出对象，然后调用拷贝构造函数。
+(2) 函数返回值是一个局部对象类对象，会进行临时对象的拷贝，调用拷贝构造函数创建一个临时对象返回。
+</code></pre><h4 id=55-赋值与初始化的区别>5.5 赋值与初始化的区别</h4><pre><code>(1) 赋值与初始化的区别：初始化是指创建这个对象的时刻对它进行一些成员变量的定义、赋值等，
+    例如常见的初始化有拷贝构造初始化，默认构造初始化，有参构造初始化；赋值是指对已经初始化好了的对象进行值的修改变动，
+    将已经初始化了的一个对象的参数赋给另一个已经初始化了的对象。
+    //person是用户自定义类类型
+    person p1=p2;//此处为拷贝初始化，即创建一个p1对象，使用创建好的p2对象对它进行拷贝初始化
+    person p3;//调用默认构造函数初始化p1对象
+    p3=p1;//将p1对象赋值给已经初始化好的p3对象
+    person p4(30,&quot;老王&quot;);//调用有参构造初始化p4对象
+    p4=p1;//将p1的成员数据赋值给p4，即改变p4的年龄与姓名
+
+(2) 调用的是拷贝构造函数还是赋值运算符，主要是看是否有新的对象实例产生。
+    如果产生了新的对象实例，那调用的就是拷贝构造函数；如果没有，那就是对已有的对象赋值，调用的是赋值运算符。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//一个临时的小类-创建对象作为Time类的一个成员属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TemClass</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	TemClass()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;TemClass的构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	TemClass(TemClass<span style=color:#f92672>&amp;</span>tem_class)
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;TemClass的拷贝构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Time</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Second;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//TemClass tem_class;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>explicit</span> Time(<span style=color:#66d9ef>int</span> Hour, <span style=color:#66d9ef>int</span> Minute, <span style=color:#66d9ef>int</span> Second);
+</span></span><span style=display:flex><span>	Time() <span style=color:#f92672>=</span> <span style=color:#66d9ef>default</span>;
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time(Time<span style=color:#f92672>&amp;</span>myTime, <span style=color:#66d9ef>int</span> TemHour <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>, <span style=color:#66d9ef>int</span> Teminute<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, <span style=color:#66d9ef>int</span> TemSecond<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> TemHour, <span style=color:#66d9ef>int</span> Teminute, <span style=color:#66d9ef>int</span> TemSecond) <span style=color:#f92672>:</span>Hour(TemHour), Minute(Teminute), Second(TemSecond)<span style=color:#75715e>//把形式参数赋值给成员属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Time<span style=color:#f92672>::</span>Time(Time<span style=color:#f92672>&amp;</span> mytime, <span style=color:#66d9ef>int</span> temhour, <span style=color:#66d9ef>int</span> teminute, <span style=color:#66d9ef>int</span> temsecond)<span style=color:#f92672>:</span>Hour(<span style=color:#ae81ff>12</span>),Minute(<span style=color:#ae81ff>12</span>),Second(<span style=color:#ae81ff>12</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;这是time类的拷贝构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//this-&gt;hour = mytime.hour;	//ok
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myFunciton01</span>(Time Te)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time <span style=color:#a6e22e>myFunction02</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Time t;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> t;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//二、拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// Time myTime01 = Time(12,12,12); // 因为和拷贝构造函数冲突，
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>/*Time(12,12,12)调用重载的有参构造函数， = Time(12,12,12);调用拷贝构造函数。因为自定义了拷贝构造函数，所以使得默认的拷贝构造函数失效，
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	  导致类对象的拷贝无法每个成员变量逐个拷贝。因此出错。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	*/</span>
+</span></span><span style=display:flex><span>	Time myTime;  <span style=color:#75715e>// 调用无参的构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime04(<span style=color:#ae81ff>12</span>,<span style=color:#ae81ff>12</span>,<span style=color:#ae81ff>12</span>); <span style=color:#75715e>//调用有参的构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime2 <span style=color:#f92672>=</span> myTime; <span style=color:#75715e>//拷贝构造函数--类对象的拷贝， 有隐式转换， 若在拷贝构造函数加上explicit，则出错。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime03(myTime);  <span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime04{ myTime };  <span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime05<span style=color:#f92672>=</span>{ myTime };  <span style=color:#75715e>//拷贝构造函数 //有隐式转换
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	Time myTime06 <span style=color:#f92672>=</span> myTime;	<span style=color:#75715e>//调用了拷贝构造函数， 有隐式转换 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// 拷贝构造函数，用在定义时，用于初始化。而拷贝赋值运算符，是用于赋值。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//四、还有一些情况会调用拷贝构造函数的调用
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//四-(1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	myFunciton01(myTime06);   <span style=color:#75715e>// 调用拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//四-(2)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// Time t = myFunction02();
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h2 id=六-重载运算符拷贝赋值运算符与析构函数>六 重载运算符、拷贝赋值运算符与析构函数</h2><h4 id=61-new对象的时候调用系统的构造函数>6.1 new对象的时候调用系统的构造函数。</h4><pre><code>(1) 但是我们new出来的对象，必须自己释放，系统不会帮我们释放。
+(2) 在系统停止运行的某个时刻之前必须自己使用delete释放。
+(3) 你什么时候delete系统就会调用析构函数。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Time</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Second;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>explicit</span> Time(<span style=color:#66d9ef>int</span> Hour, <span style=color:#66d9ef>int</span> Minute, <span style=color:#66d9ef>int</span> Second);
+</span></span><span style=display:flex><span>	Time(Time<span style=color:#f92672>&amp;</span>TemTime);
+</span></span><span style=display:flex><span>	Time(<span style=color:#66d9ef>int</span> Hour);
+</span></span><span style=display:flex><span>	Time();
+</span></span><span style=display:flex><span>	<span style=color:#f92672>~</span>Time();
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::~</span>Time()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> TemHour, <span style=color:#66d9ef>int</span> TemMinute, <span style=color:#66d9ef>int</span> TemSecond) <span style=color:#f92672>:</span>Hour(TemHour), Minute(TemMinute), Second(TemSecond)<span style=color:#75715e>//把形式参数赋值给成员属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> Hour)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> Hour;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Time<span style=color:#f92672>::</span>Time(Time<span style=color:#f92672>&amp;</span> TemTime)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> TemTime.Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Minute <span style=color:#f92672>=</span> TemTime.Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Second <span style=color:#f92672>=</span> TemTime.Second;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Time myTime01(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>12</span>);
+</span></span><span style=display:flex><span>	Time myTime02 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//初始化--调用拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime03;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	myTime03 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//这个是赋值运算符，系统默认重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//使用new创建对象, 返回的是创建对象的指针（地址）
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time <span style=color:#f92672>*</span>Ti <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Time;<span style=color:#75715e>//调用无带参数的构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time<span style=color:#f92672>*</span>Ti2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Time();<span style=color:#75715e>//调用无带参数的构造函数 ----两个区别不研究
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//new出来的对象必须自己手动释放
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>delete</span> Ti;	<span style=color:#75715e>//调用析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>delete</span> Ti2;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h4 id=62-拷贝赋值运算符>6.2 拷贝赋值运算符</h4><pre><code>(1) 我们可以自己重载赋值运算符，如果没有重载，编译器自动生成的赋值运算符重载比较粗糙，
+一般就是将非static成员属性赋值给运算符左侧的对象的成员中去。
+(2) 拷贝赋值运算符对于成员是类对象时，进行赋值运算符的操作。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Time</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Second;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>explicit</span> Time(<span style=color:#66d9ef>int</span> Hour, <span style=color:#66d9ef>int</span> Minute, <span style=color:#66d9ef>int</span> Second);
+</span></span><span style=display:flex><span>	Time(Time<span style=color:#f92672>&amp;</span>TemTime); <span style=color:#75715e>//自定义拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time(<span style=color:#66d9ef>int</span> Hour);
+</span></span><span style=display:flex><span>	Time() <span style=color:#f92672>=</span> <span style=color:#66d9ef>default</span>; <span style=color:#75715e>// 使用编译器默认无参构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//重载赋值运算符
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time<span style=color:#f92672>&amp;</span> <span style=color:#66d9ef>operator</span><span style=color:#f92672>=</span>(<span style=color:#66d9ef>const</span> Time<span style=color:#f92672>&amp;</span>TemTime);
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> Hour, <span style=color:#66d9ef>int</span> Minute, <span style=color:#66d9ef>int</span> Second) <span style=color:#f92672>:</span>Hour(Hour), Minute(Minute), Second(Second)<span style=color:#75715e>//把形式参数赋值给成员属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>	cout<span style=color:#f92672>&lt;&lt;</span><span style=color:#e6db74>&#34;调用explicit Time(int Hour, int Minute, int Second)&#34;</span><span style=color:#f92672>&lt;&lt;</span>endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> Hour)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> Hour;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Time<span style=color:#f92672>::</span>Time(Time<span style=color:#f92672>&amp;</span> TemTime)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> TemTime.Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Minute <span style=color:#f92672>=</span> TemTime.Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Second <span style=color:#f92672>=</span> TemTime.Second;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//重载赋值运算符
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Time<span style=color:#f92672>&amp;</span> Time<span style=color:#f92672>::</span><span style=color:#66d9ef>operator</span><span style=color:#f92672>=</span>(<span style=color:#66d9ef>const</span> Time<span style=color:#f92672>&amp;</span> TemTime)	<span style=color:#75715e>//建议写上const，常量属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> TemTime.Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Minute <span style=color:#f92672>=</span> TemTime.Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Second <span style=color:#f92672>=</span> TemTime.Second;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>*</span><span style=color:#66d9ef>this</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//一、拷贝赋值运算符
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// Time myTime01 = Time(12,12,12); // 因为和拷贝构造函数冲突，
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>/*Time(12,12,12)调用重载的有参构造函数， = Time(12,12,12);调用拷贝构造函数。因为自定义了拷贝构造函数，所以使得默认的拷贝构造函数失效，
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	  导致类对象的拷贝无法每个成员变量逐个拷贝。因此出错。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	*/</span>
+</span></span><span style=display:flex><span>	Time myTime01;  <span style=color:#75715e>//调用无参构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime04(<span style=color:#ae81ff>12</span>,<span style=color:#ae81ff>12</span>,<span style=color:#ae81ff>12</span>); <span style=color:#75715e>//调用有参的构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime02 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//初始化--调用拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime03;  <span style=color:#75715e>//调用无参构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	
+</span></span><span style=display:flex><span>	myTime03 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//这个是赋值运算符，系统默认重载，没有调用拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//系统会调用一个拷贝赋值运算符,我们可以自己进行运算符的重载,重载后调用重载后的重载函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//myTime03就是赋值运算符重载返回的*this
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//等价于
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// 但是拷贝构造函数，用在定义时，用于初始化。而拷贝赋值运算符，是用于赋值。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// 64行没有产生新的对象，因此是赋值，不是拷贝构造
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 二、重载赋值运算符
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	myTime03.<span style=color:#66d9ef>operator</span><span style=color:#f92672>=</span>(myTime01);
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h4 id=63-什么是运算符重载>6.3 什么是运算符重载</h4><p>在c++中我们都知道有函数重载的概念，在类和对象的设计中还设计到了成员函数重载。同样c++也提供了运算符的重载，所谓重载，就是赋予新的含义。实际上我们在前期的学习过程中已经不知不觉使用了运算符重载，如"&#171;“和”&#187;“本来是c++的位移运算符，但是却可以用来输入与输出，这是因为c++系统对”&#171;“和”&#187;&ldquo;运算符进行了重载，用户在不同的场合下使用它们，作用是不同的。</p><h4 id=64-运算符重载的方法>6.4 运算符重载的方法</h4><pre><code>(1) 运算符重载的方法是定义一个运算符重载函数，也就是说，运算符重载函数是通过定义一个函数来实现的，运算符重载实质上是函数的重载。
+    运算符重载的格式：
+        函数类型 operator 运算符名称(形参列表)
+(2) 在上面的格式中，operator是c++的关键字，是专门用于定义重载运算符的函数的，运算符名称就是c++已经有的运算符。注意：函数名是由operator和运算符组成
+(3) 运算符重载有两种方式：一种是类内重载（运算符重载函数作为类的成员函数），另一种是类外重载（运算符重载函数作为类的友元函数）
+(4) 调用的时候为 myTime01.operator==(myTime02) 等价于myTime01==myTime02
+(5) 如果我们不重载运算符，对于简单的运算符，如赋值运算符系统会自动生成一个。但是对复杂的运算符，如==，系统不会生成。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>// 类内重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>complex</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	complex() { real <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; imag <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; } <span style=color:#75715e>//定义构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	complex(<span style=color:#66d9ef>double</span> r, <span style=color:#66d9ef>double</span> i) { real <span style=color:#f92672>=</span> r; imag <span style=color:#f92672>=</span> i; }<span style=color:#75715e>//构造函数重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	complex <span style=color:#66d9ef>operator</span> <span style=color:#f92672>+</span>(complex<span style=color:#f92672>&amp;</span> c2) <span style=color:#75715e>//定义重载运算符+的函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	{
+</span></span><span style=display:flex><span>		complex c;
+</span></span><span style=display:flex><span>		c.real <span style=color:#f92672>=</span> real <span style=color:#f92672>+</span> c2.real;
+</span></span><span style=display:flex><span>		c.imag <span style=color:#f92672>=</span> imag <span style=color:#f92672>+</span> c2.imag;
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> c;<span style=color:#75715e>//返回局部对象
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>display</span>()<span style=color:#75715e>//定义输出函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;(&#34;</span> <span style=color:#f92672>&lt;&lt;</span> real <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;,&#34;</span> <span style=color:#f92672>&lt;&lt;</span> imag<span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;i)&#34;</span><span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>double</span> real;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>double</span> imag;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	complex c1(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>), c2(<span style=color:#ae81ff>5</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>10</span>), c3;
+</span></span><span style=display:flex><span>	c3 <span style=color:#f92672>=</span> c1<span style=color:#f92672>+</span>c2;<span style=color:#75715e>//c3=c1.operator(c2)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	c1.display();
+</span></span><span style=display:flex><span>	c2.display();
+</span></span><span style=display:flex><span>	c3.display();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>————————————————————————————————</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 类外重载-友元函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>complex</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>friend</span> complex <span style=color:#66d9ef>operator</span> <span style=color:#f92672>+</span>(complex<span style=color:#f92672>&amp;</span> c1, complex<span style=color:#f92672>&amp;</span> c2); <span style=color:#75715e>//重载函数作为友元
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	complex() { real <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; imag <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; }<span style=color:#75715e>//定义构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	complex(<span style=color:#66d9ef>double</span> r,<span style=color:#66d9ef>double</span> i) { real <span style=color:#f92672>=</span> r; imag <span style=color:#f92672>=</span> i; }<span style=color:#75715e>//构造函数重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>display</span>()<span style=color:#75715e>//定义输出函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;(&#34;</span> <span style=color:#f92672>&lt;&lt;</span> real <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;,&#34;</span> <span style=color:#f92672>&lt;&lt;</span> imag<span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;i)&#34;</span><span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>double</span> real;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>double</span> imag;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span><span style=color:#75715e>//定义运算符+重载函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>complex <span style=color:#66d9ef>operator</span> <span style=color:#f92672>+</span>(complex<span style=color:#f92672>&amp;</span> c1, complex<span style=color:#f92672>&amp;</span> c2)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>complex</span>(c1.real <span style=color:#f92672>+</span> c2.real, c1.imag <span style=color:#f92672>+</span> c2.imag);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	complex c1(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>), c2(<span style=color:#ae81ff>5</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>10</span>), c3;
+</span></span><span style=display:flex><span>	c3 <span style=color:#f92672>=</span> c1<span style=color:#f92672>+</span>c2;<span style=color:#75715e>//c3=operator(c1,c2)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	c1.display();
+</span></span><span style=display:flex><span>	c2.display();
+</span></span><span style=display:flex><span>	c3.display();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h4 id=65-析构函数--与构造函数相反对象销毁的时候就会调用析构函数>6.5 析构函数&ndash;与构造函数相反，对象销毁的时候就会调用析构函数。</h4><pre><code>(1) 如果我们不写自己的析构函数，编译器就会为我们生成一个默认的析构函数。
+(2) 在构造函数里面new一段内存，就要在析构函数函数里面调用delete函数释放内存。
+(3) 析构函数也是类的成员函数，是~类名(){}。没有返回值，不接受任何参数，不能被重载。所以只能有一个析构函数。
+    函数重载：函数名字相同，但是函数的参数个数，参数类型，参数顺序不同。
+    那么我们调用的时候会根据参数类型，个数，顺序来调用不同的函数。
+</code></pre><h4 id=66-构造函数的成员初始化>6.6 构造函数的成员初始化</h4><pre><code>(1) 构造函数做的工作可以分为两部分：
+	1. 函数体之前（初始化列表的形式）都是用来初始化类的成员属性的。
+	2. 函数体中对成员变量的操作是赋值，不是初始化。这种浪费了系统初始化的一次机会，因为系统也会给一个默认值初始化。
+(2) 析构函数也是2部分：
+	1. 析构函数先执行函数体{}，进行释放内存等操作。销毁自己new出来的东西。
+	2. 函数体之后是系统销毁对象（成员变量），进行系统销毁，不是我们手动销毁。
+</code></pre><h4 id=67-成员变量的创建和销毁时机>6.7 成员变量的创建和销毁时机</h4><pre><code>(1) 创建对象的时候，先定义的先初始化。每个成员变量是按照成员变量定义的顺序来初始化（先定义的成员变量先有值）
+    销毁的时候，先定义的时候，后销毁。	
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Time</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> Second;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>explicit</span> Time(<span style=color:#66d9ef>int</span> Hour, <span style=color:#66d9ef>int</span> Minute, <span style=color:#66d9ef>int</span> Second);
+</span></span><span style=display:flex><span>	Time(Time<span style=color:#f92672>&amp;</span>TemTime);
+</span></span><span style=display:flex><span>	Time(<span style=color:#66d9ef>int</span> Hour);
+</span></span><span style=display:flex><span>	Time() <span style=color:#f92672>=</span> <span style=color:#66d9ef>default</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>~</span>Time()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;析构函数执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> TemHour, <span style=color:#66d9ef>int</span> TemMinute, <span style=color:#66d9ef>int</span> TemSecond) <span style=color:#f92672>:</span>Hour(TemHour), Minute(TemMinute), Second(TemSecond)<span style=color:#75715e>//把形式参数赋值给成员属性
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>Time<span style=color:#f92672>::</span>Time(<span style=color:#66d9ef>int</span> Hour)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> Hour;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>//拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Time<span style=color:#f92672>::</span>Time(Time<span style=color:#f92672>&amp;</span> TemTime)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Hour <span style=color:#f92672>=</span> TemTime.Hour;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Minute <span style=color:#f92672>=</span> TemTime.Minute;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>Second <span style=color:#f92672>=</span> TemTime.Second;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playObj</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Time myTime01(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>12</span>);
+</span></span><span style=display:flex><span>	Time myTime02 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//初始化--调用拷贝构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Time myTime03;
+</span></span><span style=display:flex><span>	myTime03 <span style=color:#f92672>=</span> myTime01;	<span style=color:#75715e>//这个是赋值运算符，系统默认重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	playObj();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h2 id=七-子类调用顺序访问等级与函数遮蔽>七 子类、调用顺序、访问等级与函数遮蔽</h2><h4 id=71-派生类的概念>7.1 派生类的概念</h4><pre><code>(1) 有父类和子类。构成了层次关系，叫继承。子类可以从父类那里继承很多东西。
+(2) 继承的概念是面向对象程序设计的核心思想之一。
+
+实现继承：
+	1. 定义一个父类，定义一些公用的成员变量、成员函数。
+	2. 通过继承父类来构造新的类：子类。写代码时候我们只需要写和子类相关的一些内容即可。
+	3. 子类继承自父类，子类是特殊的父类，可以用子类对象来初始化父类对象。子类一般比父类拥有更多的功能。
+</code></pre><h4 id=72-二继承方式>7.2 二、继承方式</h4><p>有public private protected, 继承是 class 子类名字:public/private/protected 父类</p><h4 id=73-派生类调用构造函数与析构函数的顺序>7.3 派生类调用构造函数与析构函数的顺序</h4><pre><code>(1) 先调用父类的构造函数，初始化父类的成员变量，然后调用子类的构造函数，初始化子类的成员变量。
+(2) 当撤销派生类对象时，则先执行派生类的析构函数，随后再执行基类的析构函数。
+</code></pre><h4 id=74-类成员函数和成员属性的3中访问权限-与-3中继承方式>7.4 类成员函数和成员属性的3中访问权限 与 3中继承方式</h4><pre><code>public：可以被任意实体访问
+private：只允许本类的成员函数访问
+protected：只允许本类或者子类的成员函数访问。
+
+父类和子类使用public方式继承
+父类			子类			子类访问类型
+public		public		public
+protected	public		protected	//重要
+private		public		无访问权限
+
+public		protected	protected
+protected	protected	protected
+private		protected	无访问权限
+
+
+public		private		private
+protected	private		private
+private		private		无访问权限
+
+注意：
+	1. 子类public继承不改变父类的访问权限
+	2. protected继承将父类中的public成员改为子类的protected成员。
+	3. private继承使的父类所有成员在子类中变为private
+	4. 父类的private成员不受继承方式的影响，子类永远无法访问
+	5. 对于父类来讲，尤其是父类的成员函数，如果你不想让外部访问，就设置为private，
+	如果你想让子类访问，就设置为protected，
+	如果想公开，就设置为public。
+</code></pre><h4 id=75-函数遮蔽>7.5 函数遮蔽</h4><pre><code>(1) 子类对象可以调用父类的public，protected函数，但是当有同名函数时候，子类函数对象就会屏蔽父类的同名函数
+(2) using Human::myFunction;
+    方法只能制定函数名，则凡是基类中的public protected的所有同名函数（myFucntion）在子类中都可见。
+    不能让一部分同名函数在子类中可见，只能全部可见。(例如重载的问题)
+    using引入的主要目的是用来实现在子类中调用父类的同名函数。
+    当子类中的参数个数、类型顺序和父类中的同名函数可以构成函数重载的时候才能区分开。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Human</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human();
+</span></span><span style=display:flex><span>	Human(<span style=color:#66d9ef>int</span> m_i,string str,<span style=color:#66d9ef>int</span> myProtected,<span style=color:#66d9ef>int</span> myPrivate);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#f92672>~</span>Human();
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> age;	<span style=color:#75715e>//年龄
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	string str;	<span style=color:#75715e>//名字
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myPubFunction</span>() { ; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>	<span style=color:#75715e>//父类的同名函数构成函数重载
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>void</span> myFunction();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myFunction</span>(<span style=color:#66d9ef>int</span> tem);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>protected</span><span style=color:#f92672>:</span>	<span style=color:#75715e>//只能在子类的成员函数中调用
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>int</span> myProtected;	<span style=color:#75715e>//本类和子类的成员函数可以访问
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myProFunction</span>() { ; }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span><span style=color:#75715e>//子类都不能访问
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>int</span> myPrivate;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myPriFunction</span>() { ; }
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Human<span style=color:#f92672>::</span>Human()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了Human默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human(<span style=color:#66d9ef>int</span> age, string str,<span style=color:#66d9ef>int</span> myWeath,<span style=color:#66d9ef>int</span> myPrivete)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>age <span style=color:#f92672>=</span> age;	
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>str <span style=color:#f92672>=</span> str;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>myProtected <span style=color:#f92672>=</span> myWeath;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>myPrivate <span style=color:#f92672>=</span> myPrivete;
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了Human带参数的构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Human<span style=color:#f92672>::~</span>Human()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了Human析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Human<span style=color:#f92672>::</span>myFunction()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;myFunction&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Human<span style=color:#f92672>::</span>myFunction(<span style=color:#66d9ef>int</span> tem)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;myFunction&#34;</span> <span style=color:#f92672>&lt;&lt;</span> tem <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Man</span><span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human	<span style=color:#75715e>//男人类继承自Human类
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Man();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>myFunction</span>(<span style=color:#66d9ef>int</span> tem);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>using</span> Human<span style=color:#f92672>::</span>myFunction;	<span style=color:#75715e>//vs2015对这个支持不太好
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Man<span style=color:#f92672>::</span>myFunction(<span style=color:#66d9ef>int</span> tem)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Human<span style=color:#f92672>::</span>myFunction(<span style=color:#ae81ff>3</span>);
+</span></span><span style=display:flex><span>	Human<span style=color:#f92672>::</span>myFunction();
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;myFunction man：&#34;</span> <span style=color:#f92672>&lt;&lt;</span> tem <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Man<span style=color:#f92672>::</span>Man()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了man类的默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Man m1;	<span style=color:#75715e>//先调用父类的构造函数，然后调用子类的构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	m1.age <span style=color:#f92672>=</span> <span style=color:#ae81ff>12</span>;
+</span></span><span style=display:flex><span>	m1.str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;白乾龙&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	m1.myPubFunction();	<span style=color:#75715e>//子类可以调用父类的public成员函数,
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//如果子类和父类有同名函数，那么子类对象只能调用子类的函数，不能调用父类的重载的函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	m1.myFunction(<span style=color:#ae81ff>123</span>);
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/*如果确实想调用父类的成员函数，1.在子类的成员函数中，可以使用 父类名字：：同名函数名 强制调用父类函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *2.using using namespace
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *c++11中，让父类同名函数在子类中可见
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *通过using这个关键字，让父类的同名函数在子类中可见，说白了就是让父类同名函数在子类中以重载的方式实现。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 */</span>
+</span></span><span style=display:flex><span>	m1.myFunction();	<span style=color:#75715e>//会调用父类的myFunction函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h2 id=八-父类指针虚-纯虚函数多态性与析构函数>八 父类指针、虚-纯虚函数、多态性与析构函数</h2><pre><code>为什么要用子类对象初始化父类指针，有哪些作用与好处？
+由于基类的同名函数派生类会遮蔽的问题，子类要调用父类的同名函数就必须分别定义子类的对象或者对象指针。这样就比较浪费内存空间等问题。
+子类对象初始化父类指针的好处是只定义一个指针，就可以调用父类与子类的同名函数，从而实现多态。
+
+调用问题：基类与派生类的同名函数，派生类的对象调用同名函数时，会屏蔽基类的同名函数。
+如果想要使用一个对象指针实现调用父类与各子类的同名函数，
+方式：
+    - 通过使用子类对象初始化父类指针的形式。
+</code></pre><h4 id=81-基类指针派生类指针>8.1 基类指针，派生类指针</h4><pre><code>(1) 使用new创建对象都是返回指针
+(2) 父类指针使用子类对象初始化，但是只能调用父类中的同名函数，不能调用子类中的同名函数。----&gt;如何调用子类同名函数---&gt;新需求---&gt;虚函数--&gt;多态
+    实际中当函数的参数是父类指针，可以接受所有的子类对象作为实参传递过来，实现动态类型识别来调用父类和子类中的同名函数。
+</code></pre><h4 id=82-虚函数--实现多态>8.2 虚函数&ndash;实现多态</h4><pre><code>多态性使得程序调用的函数是在运行时动态确定的，而不是在编译时静态确定的。
+如何实现父类指针使用子类对象初始化后，调用子类中同名函数。
+做法：父类与子类的同名函数必须为虚函数(即在同名函数前面增加virtual关键字)。
+(1) 父类的同名函数前面增加virtual.来表示这是一个虚函数，可以实现多态。
+    子类的同名函数可以不写virtual，自动为虚函数。
+(2) 父类函数和子类函数的名字，参数，参数类型，必须完全相同。才会有多态。
+(3) 重载--在一个类内部函数名字相同，但是参数个数，参数类型，参数顺序不同，调用时候使用参数来区别。
+(4) 重写：虚函数实现多态，父类中的同名函数在子类中函数名字，参数都不能改变。
+(5) 重定义：继承中子类重新写了这个函数，改变了参数个数，类型，参数顺序等。
+(6) 为了避免你在子类中写错虚函数，在c++中，你可以在函数声明中增加一个override的关键字。
+    这个关键字用在“子类”中，必须父类是虚函数，才可以加上override，否则会报错。当函数不能覆盖的时候也会报错。
+(7) override就是用来说明派生类中的虚函数，编译器就会认为你这个eat()函数覆盖了父类中的同名函数，
+    编译器就会在父类中找同名同参数的虚函数，如果没找到，就会报错。
+</code></pre><h4 id=83-final关键字>8.3 final关键字</h4><pre><code>(1) 是与override相对的，也是用在虚函数中，使用在“父类”中，
+    如果我们在父类的函数中声明了“final”关键字，那么任何尝试覆盖该函数的操作都将引发错误。
+(2) 动态绑定：动态表示的就是我们的程序运行的时候才知道父类指针指向哪个对象，
+    调用对象的对应的函数。运行的时候才知道哪个对象绑定到eat()函数中。
+</code></pre><h4 id=84-多态性>8.4 多态性</h4><pre><code>(1) 多态性是针对虚函数来说的。核心理念就是通过基类访问派生类定义的函数。
+(2) 体现在具有继承关系的父类和子类之间，子类重写了父类成员函数virtual，
+    通过父类的指针，只有到了程序运行时期找到程序动态绑定到
+(3) 父类指针的函数，然后系统内部查询虚函数表执行对应的函数（父类和子类的虚函数）。
+(4) 多态性使得程序调用的函数是在运行时动态确定的，而不是在编译时静态确定的。
+(5) 使用一个基类类型的指针或者引用，来指向子类对象，进而调用由子类复写的个性化的虚函数。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project3.hpp&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;project2.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span>  <span style=color:#a6e22e>Human</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span>	string name;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human();
+</span></span><span style=display:flex><span>	Human(<span style=color:#66d9ef>int</span> age, string name);
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#f92672>~</span>Human()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> myFunction();
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//virtual void eat() final;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>()<span style=color:#75715e>//虚函数的实现	运行时动态识别
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;这是Human的eat函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Man</span><span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Man();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> myFunction();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Man<span style=color:#f92672>::</span>eat()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;man中的eat（）函数执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Woman</span><span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Woman();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> myFunction();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;woman中的eat()函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Human<span style=color:#f92672>::</span>myFunction()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human类中的函数执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Man<span style=color:#f92672>::</span>myFunction()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类中的myFunction函数执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human(<span style=color:#66d9ef>int</span> age, string name)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>age <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>name <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Woman<span style=color:#f92672>::</span>Woman()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;woman的构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Woman<span style=color:#f92672>::</span>myFunction()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Woman类中的myFunction函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Man<span style=color:#f92672>::</span>Man()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类的默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//一、基类指针，派生类指针
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human<span style=color:#f92672>*</span>p_human <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Human;
+</span></span><span style=display:flex><span>	Man <span style=color:#f92672>*</span>p_man <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Man;   <span style=color:#75715e>// 这里因为继承会先调用父类的构造函数，初始化父类的成员变量，然后调用子类的构造函数，初始化子类的成员变量。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//先调用父类的构造函数，初始化父类的成员变量，然后调用子类的构造函数，初始化子类的成员变量。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//子类是特殊的父类，父类指针可以new一个子类对象。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human<span style=color:#f92672>*</span>p_human2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Man;	<span style=color:#75715e>//ok，使用子类对象初始化父类指针
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human<span style=color:#f92672>*</span>p_human3 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Woman;
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	p_human2<span style=color:#f92672>-&gt;</span>myFunction();	<span style=color:#75715e>//这里调用父类中的函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//但是父类指针实际上是指向子类的对象，如果想调用子类的函数？---&gt;新需求
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//---父类指针指向父类对象还是子类对象就调用对应的函数---&gt;多态
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	p_human<span style=color:#f92672>-&gt;</span>eat();	<span style=color:#75715e>//调用父类eat()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	p_human2<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Man类eat()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	p_human3<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Woman中的函数eat()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	p_human3<span style=color:#f92672>-&gt;</span>Human<span style=color:#f92672>::</span>eat();<span style=color:#75715e>//显式调用父类的eat()函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_human;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_human2;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_human3;
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *都是调用Human的析构函数,若果想调用各个子类的析构函数应该怎么办？
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 *
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h4 id=85-纯虚函数>8.5 纯虚函数</h4><pre><code>在基类中定义的函数返回值  函数名字（函数参数） = 0 子类必须实现所有的纯虚函数
+ (1) 一旦父类有纯虚函数，那么就不能生成父类的实例化对象。主要用于当成基类用来生成子类用的。
+ (2) 因为父类不能实例化对象，所以父类的纯虚函数也就没有办法调用。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span>  <span style=color:#a6e22e>Human</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span>	string name;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human();
+</span></span><span style=display:flex><span>	Human(<span style=color:#66d9ef>int</span> age, string name);
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#f92672>~</span>Human()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span>  <span style=color:#66d9ef>void</span> eat() <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Man</span> <span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Man();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Woman</span> <span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Woman();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Woman<span style=color:#f92672>::</span>Woman()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;这是woman的构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human(<span style=color:#66d9ef>int</span> age, string name)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>age <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>name <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Man<span style=color:#f92672>::</span>Man()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类的默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Woman<span style=color:#f92672>::</span>eat()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Woman类的eat()执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Man<span style=color:#f92672>::</span>eat()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类的eat()执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playObject</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Human <span style=color:#f92672>*</span>p_human01 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Woman;
+</span></span><span style=display:flex><span>	p_human01<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Woman的eat()函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	Human<span style=color:#f92672>*</span>p_human02 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Man;
+</span></span><span style=display:flex><span>	p_human02<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Man的eat()函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	playObject();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details><h4 id=86-用基类指针指向子类的对象delete指针对象时只调用父类的析构函数不会执行子类的析构函数>8.6 用基类指针指向子类的对象，delete指针对象时，只调用父类的析构函数，不会执行子类的析构函数</h4><pre><code>解决办法：
+    把父类中的析构函数写成虚函数。
+
+总结：
+    1. 一般子类都是public继承。在public继承中，基类对派生类机器对象的操作，只能影响到从基类继			
+        承下来的成员。如果想要用派生类对基类非继承成员函数进行操作，则要把这个成员函数定义为虚函数。析构函数也是如此。
+    2. 基类中析构函数的虚函数特性也会继承给子类，这样子类的析构函数自然也是虚函数。
+        虽然子类的析构函数和父类的析构函数名字不同，但是他们都是继承的虚函数。
+    3. delete删除一个指向子类对象的父类指针的时候，肯定要调用父类的析构函数，但是要想让系统先调用子类的析构函数，
+        父类的析构函数就要声明为虚函数，也就是说，c++为了获得运行时的多态，所调用的成员函数必须是Virtual类型的。
+    4. 结论：如果一个类如果想做基类，务必把类的析构函数写成virtual类型，只要基类的析构函数是虚函数，
+        就能保证我们delete基类指针的时候调用正确的析构函数版本（先调用子类，再调用父类）
+
+    虚函数会增加内存开销，类里面定义虚函数，编译器就会给这个类增加虚函数表，这个表里面存放虚函数的指针。
+
+调试信息：
+    当我们把析构或者构造函数的写在类内部实现，可能更改为内联函数，不能f11进入函数内部执行。可以在函数体设置一个断点。
+    （前面说的没有执行我们自己的写的构造或者析构是错误的）
+</code></pre><h4 id=87-抽象类>8.7 抽象类</h4><pre><code>抽象类：带有纯虚函数的类叫抽象类。
+(1) 抽象类不能用来生成对象，主要当作父类用来生成子类。
+(2) 子类必须要实现父类中声明的纯虚函数。
+(3) 抽象类中的虚函数不写函数体。
+(4) 抽象类主要是用做父类，把一些公共接口写成纯虚函数。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span>  <span style=color:#a6e22e>Human</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span>	string name;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//构造函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Human();
+</span></span><span style=display:flex><span>	Human(<span style=color:#66d9ef>int</span> age, string name);
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>virtual</span> <span style=color:#f92672>~</span>Human()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span>  <span style=color:#66d9ef>void</span> eat() <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Man</span> <span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Man();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>~</span>Man()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了Man的析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Woman</span> <span style=color:#f92672>:</span><span style=color:#66d9ef>public</span> Human
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	Woman();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eat</span>() <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>~</span>Woman()
+</span></span><span style=display:flex><span>	{
+</span></span><span style=display:flex><span>		cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;执行了Woman的析构函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Woman<span style=color:#f92672>::</span>Woman()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;这是woman的构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Human默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Human<span style=color:#f92672>::</span>Human(<span style=color:#66d9ef>int</span> age, string name)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>age <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>name <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Man<span style=color:#f92672>::</span>Man()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类的默认构造函数&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Woman<span style=color:#f92672>::</span>eat()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Woman类的eat()执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> Man<span style=color:#f92672>::</span>eat()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Man类的eat()执行&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playObject</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	Human <span style=color:#f92672>*</span>p_human01 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Woman;  <span style=color:#75715e>// 这里因为继承会先调用父类的构造函数，初始化父类的成员变量，然后调用子类的构造函数，初始化子类的成员变量。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	p_human01<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Woman的eat()函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	Human<span style=color:#f92672>*</span>p_human02 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Man;
+</span></span><span style=display:flex><span>	p_human02<span style=color:#f92672>-&gt;</span>eat();<span style=color:#75715e>//调用Man的eat()函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//执行正确，会执行父类构造和子类构造，子类析构、父类析构。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	Woman <span style=color:#f92672>*</span>p_woman <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Woman;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_woman;    <span style=color:#75715e>// 先调用子类析构函数，再调用父类析构函数。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//都是只执行父类的析构函数，没有执行子类的析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;-------------------------------------&#34;</span> <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_human01;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>delete</span> p_human02;
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	执行了Woman的析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	Human析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	执行了Man的析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	Human析构函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 */</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	playObject();
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></details></article></div></div><div class="col-sm-12 col-md-12 col-lg-3"><div id=stickySideBar class=sticky-sidebar><aside class=toc><h5>Table Of Contents</h5><div class=toc-content><nav id=TableOfContents><ul><li><a href=#五-拷贝构造函数>五 拷贝构造函数</a><ul><li></li></ul></li><li><a href=#六-重载运算符拷贝赋值运算符与析构函数>六 重载运算符、拷贝赋值运算符与析构函数</a><ul><li></li></ul></li><li><a href=#七-子类调用顺序访问等级与函数遮蔽>七 子类、调用顺序、访问等级与函数遮蔽</a><ul><li></li></ul></li><li><a href=#八-父类指针虚-纯虚函数多态性与析构函数>八 父类指针、虚-纯虚函数、多态性与析构函数</a><ul><li></li></ul></li></ul></nav></div></aside><aside class=social><h5>Social</h5><div class=social-content><ul class=list-inline><li class="list-inline-item text-center"><a target=_blank href="https://twitter.com/share?text=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87&url=https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f"><i class="fab fa-twitter"></i></a></li><li class="list-inline-item text-center"><a target=_blank href="https://api.whatsapp.com/send?text=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87: https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f"><i class="fab fa-whatsapp"></i></a></li><li class="list-inline-item text-center"><a target=_blank href='mailto:?subject=C%2b%2b%e7%b1%bb%e4%ba%8c%e7%af%87&amp;body=liwuhen5788%40gmail.com https%3a%2f%2fliwuhen.cn%2fprogramming_languages%2fc%2b%2b%25E7%25B1%25BB%25E4%25BA%258C%25E7%25AF%2587%2f'><i class="fa fa-envelope"></i></a></li></ul></div></aside></div></div></div><div class=row><div class="col-sm-12 col-md-12 col-lg-9 p-4"></div></div></div><button class="p-2 px-3" onclick=topFunction() id=topScroll>
 <i class="fas fa-angle-up"></i></button></section><div class=progress><div id=scroll-progress-bar class=progress-bar role=progressbar aria-valuenow=0 aria-valuemin=0 aria-valuemax=100></div></div><script src=/js/scrollProgressBar.js></script>
-<script>var topScroll=document.getElementById("topScroll");window.onscroll=function(){scrollFunction()};function scrollFunction(){document.body.scrollTop>20||document.documentElement.scrollTop>20?topScroll.style.display="block":topScroll.style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}let stickySideBarElem=document.getElementById("stickySideBar"),stickyNavBar=!1;if(stickyNavBar){let e=document.getElementById("profileHeader"),t=e.offsetHeight+15;stickySideBarElem.style.top=t+"px"}else stickySideBarElem.style.top="50px"</script><script src=/js/readingTime.js></script></div><footer><div class="container py-3" id=recent-posts><div class="h3 text-center text-secondary py-3">Recent Posts</div><div class="row justify-content-center"><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++类二篇></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++类二篇>C++类二篇</h5></a><div class="card-text secondary-font"><p></p></div></div><div class="mt-auto card-footer"><span class=float-start>Jan 26, 2024</span>
+<script>var topScroll=document.getElementById("topScroll");window.onscroll=function(){scrollFunction()};function scrollFunction(){document.body.scrollTop>20||document.documentElement.scrollTop>20?topScroll.style.display="block":topScroll.style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}let stickySideBarElem=document.getElementById("stickySideBar"),stickyNavBar=!1;if(stickyNavBar){let e=document.getElementById("profileHeader"),t=e.offsetHeight+15;stickySideBarElem.style.top=t+"px"}else stickySideBarElem.style.top="50px"</script><script src=/js/readingTime.js></script></div><footer><div class="container py-3" id=recent-posts><div class="h3 text-center text-secondary py-3">Recent Posts</div><div class="row justify-content-center"><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++类二篇></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++类二篇>C++类二篇</h5></a><div class="card-text secondary-font"><p>五 拷贝构造函数 5.1 默认情况下，类对象的拷贝是每个成员变量逐个拷贝。 5.2 拷贝构造函数 (1) 如果一个类的构造函数，它的第一个参数是所属的类类对象引用，如果还有其他额外参数，这些额外参数都有默认值。 函数默认参数都必须放在函数声明中，除非该函数没有函数声明。 (2) 拷贝构造函数：在一定的时机被系统自动调用，时机：进行对象复制的时候 = (3) 建议拷贝构造函数第一个参数带const, 且一般不要声明explicit来禁止隐式类型转换。 (4)（一中，默认情况下，类对象的拷贝是每个成员变量逐个拷贝。）成员变量逐个拷贝功能。 因为我们定义的拷贝构造函数存在而失去作用。我们定义的拷贝构 …</p></div></div><div class="mt-auto card-footer"><span class=float-start>Jan 26, 2024</span>
 <a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/ class="float-end btn btn-outline-info btn-sm">Read</a></div></div></div><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E7%B1%BB%E4%B8%80%E7%AF%87/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++类一篇></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E7%B1%BB%E4%B8%80%E7%AF%87/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++类一篇>C++类一篇</h5></a><div class="card-text secondary-font"><p>一 成员函数、对象复制与私有方法 1.1 综述：类是我们自己定义的数据类型（新类型） 类是我们自己定义的数据类型，新类型 设计类需要考虑的角度 (1) 站在设计和实现的角度--stl模板类的设计者 (2) 站在使用者的角度--哪些是提供给我们的接口 (3) 继承的角度，父类和子类 公共特性由父类来实现 1.2 类基础 (1) 一个类就是用户自己定义的数据类型，我们可以把类想象成一个命名空间，包着一堆东西（成员函数、成员变量） (2)一个类的组成，成员变量（属性）成员函数--由很多特殊的成员函数（构造，析构）和成员属性（this指针） (3) 访问类成员的时候，如果是类对象，就是用 对象名.成员 …</p></div></div><div class="mt-auto card-footer"><span class=float-start>Jan 26, 2024</span>
 <a href=/programming_languages/c++%E7%B1%BB%E4%B8%80%E7%AF%87/ class="float-end btn btn-outline-info btn-sm">Read</a></div></div></div><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E6%8C%87%E9%92%88/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++指针></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E6%8C%87%E9%92%88/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++指针>C++指针</h5></a><div class="card-text secondary-font"><p>一 指针 1 单指针 1.1 声明指针 要声明指向特定类型的指针，请使用下面的格式：
 typrName * pointerName; 1.2 指针赋值 应将内存地址赋给指针。可以对变量名应用&运算符，来获得被命名的内存的地址，new运算符返回未命名的内存的地址。
