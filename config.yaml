@@ -76,7 +76,8 @@ Menus:
 params:
   title: "璇玑"
   description: Text about my cool site
-  # staticPath: ""  # The path to serve the static files from
+  # The path to serve the static files from
+  staticPath: 
   favicon: "/images/img006.png"
 
   # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
@@ -148,12 +149,12 @@ params:
     enable: true
     intro:  我认出了风暴，而激动如大海。我舒展开又跌回我自己，又把自己抛出去，并且独个儿置身在伟大的风暴里。
     # title: "自动驾驶"
-    subtitle: "高阶智能的汽车机器人"
+    subtitle: "高阶智能汽车机器人"
     content: "开源的伟大之处在于它汇集了全人类的智慧和创造力, 为了延续并发扬开源精神, 
              此博客主旨分享技术、热爱技术、追求技术。"
     topimage: /images/img003.png
     image: /images/img005.png
-    buttonimage: /images/img004.png
+    # buttonimage: /images/img004.png
     bottomImage:
       enable: false
     # roundImage: true # Make hero image circular | default false
@@ -170,14 +171,14 @@ params:
         - icon: fab fa-x-twitter
           url: https://example.com
       customIcons:
-        - icon: /images/fav.png
+        - icon: /images/img006.png
           url: "https://example.com"
 
   # About
   about:
     enable: false
     # title: "关于"
-    image: /images/me.png
+    image: /images/mathjax.png
     content: |-
       I am a software developer with a passion for web development. I have a background in computer science and mathematics, and I have a strong interest in the intersection of technology and art. I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. 
 
@@ -309,14 +310,14 @@ params:
       - title: Google kickstart runner
         content: I solved all problems with optimal solution.
         url: https://example.com
-        image: /images/achievment.jpg
+        image: /images/404.png
       - title: Facebook Hackathon Winner
         content: Developed a product using Artificial Intelligence.
-        image: /images/achievment.jpg
+        image: /images/404.png
       - title: Hugo Profile
         content: Developed a theme and getting 1K+ downloads per month.
         url: "https://github.com/gurusabarish/hugo-profile"
-        image: /images/achievment.jpg
+        image: /images/404.png
       - title: Microsoft Imagine Runner
         content: We are developed a product which can help others.
       - title: Google Summer of Code
@@ -330,7 +331,7 @@ params:
     items:
       - title: Hugo Profile
         content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
-        image: /images/projects/profile.png
+        image: /images/404.png
         featured:
           name: Demo
           link: https://hugo-profile.netlify.app
@@ -348,7 +349,7 @@ params:
 
       - title: Image Converter
         content: A web app to convert image to pdf, png to jpg, png to jpg and png to webp without database using django.
-        image: /images/projects/converter.jpg
+        image: /images/404.png
         featured:
           name: Demo
           link: https://django-converter.herokuapp.com
@@ -361,7 +362,7 @@ params:
 
       - title: Hugo Profile V2
         content: A clean and simple Hugo template for personal portfolio and blog.
-        image: /images/projects/profile2.jpg
+        image: /images/404.png
         featured:
           name: Demo V2
           link: https://hugo-profile-2.netlify.app
