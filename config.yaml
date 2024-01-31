@@ -43,17 +43,22 @@ Menus:
       title: "Programming Languages"
       url: /Programming_Languages/
       weight: 3
+    - identifier: Data Structures and Algorithms
+      name: 数据结构与算法
+      title: "Data Structures and Algorithms"
+      url: /datastruct/
+      weight: 4
     - identifier: life
       name: 生活
       title: "Life"
       url: /life/
-      weight: 4
+      weight: 5
     - identifier: About
       name: 关于
       title: "About Blog"
       url: /About_Blog/
-      weight: 5
-    #Dropdown menu
+      weight: 6
+    # Dropdown menu
     # - identifier: dropdown
     #   title: Example dropdown menu
     #   name: Dropdown
