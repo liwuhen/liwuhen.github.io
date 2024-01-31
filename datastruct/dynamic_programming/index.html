@@ -7,18 +7,18 @@
 <small>|</small>
 Jan 30, 2024
 <span id=readingTime>min read</span></div></div><article class="page-content p-2"><h2 id=一-状态机dp>一 状态机DP</h2><h4 id=11-打家劫舍>1.1 打家劫舍</h4><p>题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p><p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p><pre><code>示例 1：
-输入：[1,2,3,1]
-输出：4
-解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
-    偷窃到的最高金额 = 1 + 3 = 4 。
+    输入：[1,2,3,1]
+    输出：4
+    解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+        偷窃到的最高金额 = 1 + 3 = 4 。
 示例 2：
-输入：[2,7,9,3,1]
-输出：12
-解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，
-    接着偷窃 5 号房屋 (金额 = 1)。偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+    输入：[2,7,9,3,1]
+    输出：12
+    解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，
+        接着偷窃 5 号房屋 (金额 = 1)。偷窃到的最高金额 = 2 + 9 + 1 = 12 。
 提示：
-1 &lt;= nums.length &lt;= 100
-0 &lt;= nums[i] &lt;= 400
+    1 &lt;= nums.length &lt;= 100
+    0 &lt;= nums[i] &lt;= 400
 </code></pre><p>分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。</p><pre><code>考虑动规五步曲：
 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。
 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？
@@ -47,20 +47,20 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>};
 </span></span></code></pre></div></details><h2 id=二-线性dp>二 线性DP</h2><h4 id=21-打家劫舍>2.1 打家劫舍||</h4><p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警 。</p><p>给定一个代表每个房屋存放金额的非负整数数组，计算你 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额。</p><pre><code>示例 1：
-输入：nums = [2,3,2]
-输出：3
-解释：你不能先偷窃 1 号房屋（金额 = 2），然后偷窃 3 号房屋（金额 = 2）, 因为他们是相邻的。
+    输入：nums = [2,3,2]
+    输出：3
+    解释：你不能先偷窃 1 号房屋（金额 = 2），然后偷窃 3 号房屋（金额 = 2）, 因为他们是相邻的。
 示例 2：
-输入：nums = [1,2,3,1]
-输出：4
-解释：你可以先偷窃 1 号房屋（金额 = 1），然后偷窃 3 号房屋（金额 = 3）。
-    偷窃到的最高金额 = 1 + 3 = 4 。
+    输入：nums = [1,2,3,1]
+    输出：4
+    解释：你可以先偷窃 1 号房屋（金额 = 1），然后偷窃 3 号房屋（金额 = 3）。
+        偷窃到的最高金额 = 1 + 3 = 4 。
 示例 3：
-输入：nums = [1,2,3]
-输出：3
+    输入：nums = [1,2,3]
+    输出：3
 提示：
-1 &lt;= nums.length &lt;= 100
-0 &lt;= nums[i] &lt;= 1000
+    1 &lt;= nums.length &lt;= 100
+    0 &lt;= nums[i] &lt;= 1000
 </code></pre><p>分析：此题由于房屋的成环，说明题目所给数组为环状，若要所偷的金额最大，分为3种情况，第一种不考虑第一个房屋和最后一个房屋，此时为线性数组。第二种为考虑第一个房屋，不考虑最后一个房屋，第三种为考虑最后一个房屋，不考虑第一个房屋。（此种考虑是因为环形数组第一个与最后一个相同）</p><pre><code>考虑动规五步曲：
 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。
 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？
@@ -117,24 +117,24 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不偷的可能偷1房屋，因此选最大。
 4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
 </code></pre><h2 id=四-股票问题>四 股票问题</h2><h4 id=41-买卖股票的最佳时机>4.1 买卖股票的最佳时机</h4><p>题目：给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。</p><p>你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。设计一个算法来计算你所能获取的最大利润。</p><p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p><pre><code>示例 1：
-输入：[7,1,5,3,6,4]
-输出：5
-解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-    注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+    输入：[7,1,5,3,6,4]
+    输出：5
+    解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+        注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
 示例 2：
-输入：prices = [7,6,4,3,1]
-输出：0
-解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+    输入：prices = [7,6,4,3,1]
+    输出：0
+    解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
 提示：
-1 &lt;= prices.length &lt;= 105
-0 &lt;= prices[i] &lt;= 104
+    1 &lt;= prices.length &lt;= 105
+    0 &lt;= prices[i] &lt;= 104
 </code></pre><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
 1）dp数组的含义：dp[i][0]-第i天手里持有股票的状态。有两种情况，
    第一种一直没买过股票，第i天买入这个股票，
    第二种是第i天之前已经买入了这个股票，一直持有到第i天。
    dp[i][1]-第i天手里不持有股票的状态。有三种情况，
-   第一种一直没有买过这个股票，第二种第i天之前买入了，第i天卖出，
-   第三种第i天之前，已经买入与卖出了这支股票。
+   第一种一直没有买过这个股票（理解为i-1天不持有），第二种第i天之前买入了，第i天卖出，（理解为i-1天持有）
+   第三种第i天之前，已经买入与卖出了这支股票。（理解为i-1天不持有）
 2）递推公式：如何通过历史状态递推出当前状态dp[i]。
     dp[i][0]-第i天手里持有股票的状态2种状态：
     a）第一种，最大利润 - prices[i]。
@@ -151,16 +151,76 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 </code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
 </span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices) {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> len <span style=color:#f92672>=</span> prices.size();
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (len <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
-</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp(len, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span>));
-</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>-=</span> prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>if</span> (prices.empty()) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>; 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>dp(prices.size()<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> max(<span style=color:#f92672>-</span>prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> prices[i]);
+</span></span><span style=display:flex><span>       }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></details><h4 id=42-买卖股票的最佳时机ii>4.2 买卖股票的最佳时机II</h4><p>题目：给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。</p><p>在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票。你也可以先购买，然后在同一天出售。</p><p>返回你能获得的最大利润 。</p><pre><code>示例 1：
+    输入：prices = [7,1,5,3,6,4]
+    输出：7
+    解释：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 
+        这笔交易所能获得利润 = 5 - 1 = 4 。
+        随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 
+        这笔交易所能获得利润 = 6 - 3 = 3 。
+        总利润为 4 + 3 = 7 。
+示例 2：
+    输入：prices = [1,2,3,4,5]
+    输出：4
+    解释：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出,
+    这笔交易所能获得利润 = 5 - 1 = 4 。总利润为 4 。
+示例 3：
+    输入：prices = [7,6,4,3,1]
+    输出：0
+    解释：在这种情况下, 交易无法获得正利润，所以不参与交易可以获得最大利润，最大利润为 0 。
+    提示：
+    1 &lt;= prices.length &lt;= 3 * 104
+    0 &lt;= prices[i] &lt;= 104
+</code></pre><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：dp[i][0]-第i天手里持有股票的状态。有两种情况，
+   第一种第i天买入这个股票，i-1之前可能交易过，（理解为i-1天不持有）
+   第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+   dp[i][1]-第i天手里不持有股票的状态。有三种情况，
+   第一种一直没有买过这个股票（理解为i-1天不持有），第二种第i天之前买入了，第i天卖出，（理解为i-1天持有）
+   第三种第i天之前，已经买入与卖出了这支股票。（理解为i-1天不持有）
+2）递推公式：如何通过历史状态递推出当前状态dp[i]。
+    dp[i][0]-第i天手里持有股票的状态2种状态：
+    a）第一种，最大利润 dp[i-1][1] - prices[i]。
+    b）第二种，最大利润 dp[i-1][0]。
+    最大利润：dp[i][0] = max(dp[i-1][1] - prices[i], dp[i-1][0])。
+    dp[i][1]-第i天手里不持有股票的状态3种状态:
+    a）第一种，最大利润 dp[i-1][1]。
+    b）第二种，最大利润 dp[i-1][0] + prices[i]。
+    c）第三种，最大利润 dp[i-1][1]。
+   递推公式：dp[i][1] = max(dp[i-1][1], dp[i-1][0] + prices[i]);
+3) dp数组初始化：dp[0][0] = -prices[0](初始最大利润为0,第一天持有，说明为第一天买入，因此为负数), 
+   dp[0][1] = 0;
+4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (prices.size() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp(prices.size() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span>));
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
 </span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> len; i<span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> max(dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], <span style=color:#f92672>-</span>prices[i]);
-</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], prices[i] <span style=color:#f92672>+</span> dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> prices[i]);
 </span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[len <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>};
 </span></span></code></pre></div></details></article></div></div><div class="col-sm-12 col-md-12 col-lg-3"><div id=stickySideBar class=sticky-sidebar><aside class=toc><h5>Table Of Contents</h5><div class=toc-content><nav id=TableOfContents><ul><li><a href=#一-状态机dp>一 状态机DP</a><ul><li></li></ul></li><li><a href=#二-线性dp>二 线性DP</a><ul><li></li></ul></li><li><a href=#三-树形dp>三 树形DP</a><ul><li></li></ul></li><li><a href=#四-股票问题>四 股票问题</a><ul><li></li></ul></li></ul></nav></div></aside><aside class=social><h5>Social</h5><div class=social-content><ul class=list-inline><li class="list-inline-item text-center"><a target=_blank href="https://twitter.com/share?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92&url=https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-twitter"></i></a></li><li class="list-inline-item text-center"><a target=_blank href="https://api.whatsapp.com/send?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92: https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-whatsapp"></i></a></li><li class="list-inline-item text-center"><a target=_blank href='mailto:?subject=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92&amp;body=liwuhen5788%40gmail.com https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f'><i class="fa fa-envelope"></i></a></li></ul></div></aside></div></div></div><div class=row><div class="col-sm-12 col-md-12 col-lg-9 p-4"></div></div></div><button class="p-2 px-3" onclick=topFunction() id=topScroll>
