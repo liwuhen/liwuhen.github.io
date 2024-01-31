@@ -38,15 +38,15 @@ Menus:
       title: "Parking"
       url: /parking/
       weight: 2
-    - identifier: programming languages
-      name: 编程语言
-      title: "Programming Languages"
-      url: /Programming_Languages/
-      weight: 3
     - identifier: Data Structures and Algorithms
       name: 数据结构与算法
       title: "Data Structures and Algorithms"
       url: /datastruct/
+      weight: 3
+    - identifier: programming languages
+      name: 编程语言
+      title: "Programming Languages"
+      url: /Programming_Languages/
       weight: 4
     - identifier: life
       name: 生活
