@@ -1,25 +1,12 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta http-equiv=accept-ch content="DPR, Viewport-Width, Width"><link rel=icon href=/images/img006.png type=image/gif><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" media=print onload='this.media="all"'><noscript><link href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel=stylesheet></noscript><link rel=stylesheet href=/css/font.css media=all><meta property="og:title" content="动态规划"><meta property="og:description" content="一 状态机DP 1.1 打家劫舍 题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
-给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
-示例 1： 输入：[1,2,3,1] 输出：4 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。 偷窃到的最高金额 = 1 + 3 = 4 。 示例 2： 输入：[2,7,9,3,1] 输出：12 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)， 接着偷窃 5 号房屋 (金额 = 1)。偷窃到的最高金额 = 2 + 9 + 1 = 12 。 提示： 1 <= nums.length <= 100 0 <= nums[i] <= 400 分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。"><meta property="og:type" content="article"><meta property="og:url" content="https://liwuhen.cn/datastruct/dynamic_programming/"><meta property="article:section" content="datastruct"><meta property="article:published_time" content="2024-01-30T01:44:57+00:00"><meta property="article:modified_time" content="2024-01-30T01:44:57+00:00"><meta property="og:site_name" content="璇玑"><meta name=twitter:card content="summary"><meta name=twitter:title content="动态规划"><meta name=twitter:description content="一 状态机DP 1.1 打家劫舍 题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
-给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
-示例 1： 输入：[1,2,3,1] 输出：4 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。 偷窃到的最高金额 = 1 + 3 = 4 。 示例 2： 输入：[2,7,9,3,1] 输出：12 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)， 接着偷窃 5 号房屋 (金额 = 1)。偷窃到的最高金额 = 2 + 9 + 1 = 12 。 提示： 1 <= nums.length <= 100 0 <= nums[i] <= 400 分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。"><link rel=stylesheet href=/bootstrap-5/css/bootstrap.min.css media=all><link rel=stylesheet href=/css/header.css media=all><link rel=stylesheet href=/css/footer.css media=all><link rel=stylesheet href=/css/theme.css media=all><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><meta name=referrer content="no-referrer-when-downgrade"><style>:root{--text-color:#343a40;--text-secondary-color:#6c757d;--background-color:#eaedf0;--secondary-background-color:#64ffda1a;--primary-color:#007bff;--secondary-color:#f8f9fa;--text-color-dark:#e4e6eb;--text-secondary-color-dark:#b0b3b8;--background-color-dark:#18191a;--secondary-background-color-dark:#212529;--primary-color-dark:#ffffff;--secondary-color-dark:#212529}body{font-size:1rem;font-weight:400;line-height:1.5;text-align:left}html{background-color:var(--background-color)!important}body::-webkit-scrollbar{height:0;width:8px;background-color:var(--background-color)}::-webkit-scrollbar-track{border-radius:1rem}::-webkit-scrollbar-thumb{border-radius:1rem;background:#b0b0b0;outline:1px solid var(--background-color)}#search-content::-webkit-scrollbar{width:.5em;height:.1em;background-color:var(--background-color)}</style><meta name=description content><link rel=stylesheet href=/css/single.css><script defer src=/fontawesome-6/all-6.4.2.js></script><title>动态规划 | 璇玑</title></head><body class=light><script>let localStorageValue=localStorage.getItem("pref-theme"),mediaQuery=window.matchMedia("(prefers-color-scheme: dark)").matches;switch(localStorageValue){case"dark":document.body.classList.add("dark");break;case"light":document.body.classList.remove("dark");break;default:mediaQuery&&document.body.classList.add("dark");break}</script><header id=profileHeader><nav class="pt-3 navbar navbar-expand-lg animate"><div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5"><a class="navbar-brand primary-font text-wrap" href=/><img src=/images/img006.png width=30 height=30 class="d-inline-block align-top">
-璇玑</a><div><input id=search autocomplete=off class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation"><svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24" data-view-component="true"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"/></svg></button><div class="collapse navbar-collapse text-wrap primary-font" id=navbarContent><ul class="navbar-nav ms-auto text-center"><li class="nav-item navbar-text d-block d-md-none"><div class=nav-link><input id=search autocomplete=off class="form-control mr-sm-2" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div></li><li class="nav-item navbar-text"><a class=nav-link href=/noa/ title=NOA>自动驾驶行车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/parking/ title=Parking>自动驾驶泊车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/datastruct/ title="Data Structures and Algorithms">数据结构与算法</a></li><li class="nav-item navbar-text"><a class=nav-link href=/programming_languages/ title="Programming Languages">编程语言</a></li><li class="nav-item navbar-text"><a class=nav-link href=/life/ title=Life>生活</a></li><li class="nav-item navbar-text"><a class=nav-link href=/about_blog/ title="About Blog">关于</a></li><li class="nav-item navbar-text"><div class=text-center><button id=theme-toggle><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></li></ul></div></div></nav></header><div id=content><section id=single><div class=container><div class="row justify-content-center"><div class="col-sm-12 col-md-12 col-lg-9"><div class=pr-lg-4><div class="title mb-5"><h1 class="text-center mb-4">动态规划</h1><div class=text-center>李双双
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta http-equiv=accept-ch content="DPR, Viewport-Width, Width"><link rel=icon href=/images/img006.png type=image/gif><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" media=print onload='this.media="all"'><noscript><link href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel=stylesheet></noscript><link rel=stylesheet href=/css/font.css media=all><meta property="og:title" content="动态规划I"><meta property="og:description" content="一 状态机DP 1.1 打家劫舍 题目：198.打家劫舍
+分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。
+考虑动规五步曲： 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？ a）选，选i房屋时，最大金额 = dp[i-2] + nums[i]。 b)不选，不选i房屋时，最大金额 = dp[i-1]。 这里dp[i-1]表示考虑i-1房屋即i-1之前房屋的最大金额，具体偷不偷不一定。 递推公式：dp[i] = max(dp[i-2]+nums[i], dp[i-1]); 3) dp数组初始化：dp[0] = nums[0], 只考虑第一个房屋，最大值为nums[0], dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不偷的可能偷1房屋，因此选最大。 4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。 Show Code class Solution { public: int rob(vector<int>& nums) { if (nums.size() == 0) return 0; if (nums.size() == 1) return nums[0]; vector<int> dp(nums.size()+1, 0); dp[0] = nums[0]; dp[1] = max(nums[0], nums[1]); for (int i = 2; i < nums."><meta property="og:type" content="article"><meta property="og:url" content="https://liwuhen.cn/datastruct/dynamic_programming/"><meta property="article:section" content="datastruct"><meta property="article:published_time" content="2024-01-30T01:44:57+00:00"><meta property="article:modified_time" content="2024-01-30T01:44:57+00:00"><meta property="og:site_name" content="璇玑"><meta name=twitter:card content="summary"><meta name=twitter:title content="动态规划I"><meta name=twitter:description content="一 状态机DP 1.1 打家劫舍 题目：198.打家劫舍
+分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。
+考虑动规五步曲： 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？ a）选，选i房屋时，最大金额 = dp[i-2] + nums[i]。 b)不选，不选i房屋时，最大金额 = dp[i-1]。 这里dp[i-1]表示考虑i-1房屋即i-1之前房屋的最大金额，具体偷不偷不一定。 递推公式：dp[i] = max(dp[i-2]+nums[i], dp[i-1]); 3) dp数组初始化：dp[0] = nums[0], 只考虑第一个房屋，最大值为nums[0], dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不偷的可能偷1房屋，因此选最大。 4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。 Show Code class Solution { public: int rob(vector<int>& nums) { if (nums.size() == 0) return 0; if (nums.size() == 1) return nums[0]; vector<int> dp(nums.size()+1, 0); dp[0] = nums[0]; dp[1] = max(nums[0], nums[1]); for (int i = 2; i < nums."><link rel=stylesheet href=/bootstrap-5/css/bootstrap.min.css media=all><link rel=stylesheet href=/css/header.css media=all><link rel=stylesheet href=/css/footer.css media=all><link rel=stylesheet href=/css/theme.css media=all><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><meta name=referrer content="no-referrer-when-downgrade"><style>:root{--text-color:#343a40;--text-secondary-color:#6c757d;--background-color:#eaedf0;--secondary-background-color:#64ffda1a;--primary-color:#007bff;--secondary-color:#f8f9fa;--text-color-dark:#e4e6eb;--text-secondary-color-dark:#b0b3b8;--background-color-dark:#18191a;--secondary-background-color-dark:#212529;--primary-color-dark:#ffffff;--secondary-color-dark:#212529}body{font-size:1rem;font-weight:400;line-height:1.5;text-align:left}html{background-color:var(--background-color)!important}body::-webkit-scrollbar{height:0;width:8px;background-color:var(--background-color)}::-webkit-scrollbar-track{border-radius:1rem}::-webkit-scrollbar-thumb{border-radius:1rem;background:#b0b0b0;outline:1px solid var(--background-color)}#search-content::-webkit-scrollbar{width:.5em;height:.1em;background-color:var(--background-color)}</style><meta name=description content><link rel=stylesheet href=/css/single.css><script defer src=/fontawesome-6/all-6.4.2.js></script><title>动态规划I | 璇玑</title></head><body class=light><script>let localStorageValue=localStorage.getItem("pref-theme"),mediaQuery=window.matchMedia("(prefers-color-scheme: dark)").matches;switch(localStorageValue){case"dark":document.body.classList.add("dark");break;case"light":document.body.classList.remove("dark");break;default:mediaQuery&&document.body.classList.add("dark");break}</script><header id=profileHeader><nav class="pt-3 navbar navbar-expand-lg animate"><div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5"><a class="navbar-brand primary-font text-wrap" href=/><img src=/images/img006.png width=30 height=30 class="d-inline-block align-top">
+璇玑</a><div><input id=search autocomplete=off class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation"><svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24" data-view-component="true"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"/></svg></button><div class="collapse navbar-collapse text-wrap primary-font" id=navbarContent><ul class="navbar-nav ms-auto text-center"><li class="nav-item navbar-text d-block d-md-none"><div class=nav-link><input id=search autocomplete=off class="form-control mr-sm-2" placeholder='Ctrl + k to Search...' aria-label=Search oninput=searchOnChange(event)></div></li><li class="nav-item navbar-text"><a class=nav-link href=/noa/ title=NOA>自动驾驶行车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/parking/ title=Parking>自动驾驶泊车技术</a></li><li class="nav-item navbar-text"><a class=nav-link href=/datastruct/ title="Data Structures and Algorithms">数据结构与算法</a></li><li class="nav-item navbar-text"><a class=nav-link href=/programming_languages/ title="Programming Languages">编程语言</a></li><li class="nav-item navbar-text"><a class=nav-link href=/life/ title=Life>生活</a></li><li class="nav-item navbar-text"><a class=nav-link href=/about_blog/ title="About Blog">关于</a></li><li class="nav-item navbar-text"><div class=text-center><button id=theme-toggle><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></li></ul></div></div></nav></header><div id=content><section id=single><div class=container><div class="row justify-content-center"><div class="col-sm-12 col-md-12 col-lg-9"><div class=pr-lg-4><div class="title mb-5"><h1 class="text-center mb-4">动态规划I</h1><div class=text-center>李双双
 <small>|</small>
 Jan 30, 2024
-<span id=readingTime>min read</span></div></div><article class="page-content p-2"><h2 id=一-状态机dp>一 状态机DP</h2><h4 id=11-打家劫舍>1.1 打家劫舍</h4><p>题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p><p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p><pre><code>示例 1：
-    输入：[1,2,3,1]
-    输出：4
-    解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
-        偷窃到的最高金额 = 1 + 3 = 4 。
-示例 2：
-    输入：[2,7,9,3,1]
-    输出：12
-    解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，
-        接着偷窃 5 号房屋 (金额 = 1)。偷窃到的最高金额 = 2 + 9 + 1 = 12 。
-提示：
-    1 &lt;= nums.length &lt;= 100
-    0 &lt;= nums[i] &lt;= 400
-</code></pre><p>分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。</p><pre><code>考虑动规五步曲：
+<span id=readingTime>min read</span></div></div><article class="page-content p-2"><h2 id=一-状态机dp>一 状态机DP</h2><h4 id=11-打家劫舍>1.1 打家劫舍</h4><p>题目：<a href=https://leetcode.cn/problems/house-robber/description/ title="Visit 打家劫舍!">198.打家劫舍</a></p><p>分析：此题考虑偷某个房屋和相邻的房屋有关系，例如示例1最后一个房屋和前一房屋有关，当前房屋偷与不偷取决于 前一个房屋和前两个房屋是否被偷了。因此，抽象理解当前状态和前面状态会有一种依赖关系，一般考虑动态规划。</p><pre><code>考虑动规五步曲：
 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。
 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？
     a）选，选i房屋时，最大金额 = dp[i-2] + nums[i]。
@@ -46,22 +33,7 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 </span></span><span style=display:flex><span>       <span style=color:#66d9ef>return</span> dp[nums.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>];
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>};
-</span></span></code></pre></div></details><h2 id=二-线性dp>二 线性DP</h2><h4 id=21-打家劫舍>2.1 打家劫舍||</h4><p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警 。</p><p>给定一个代表每个房屋存放金额的非负整数数组，计算你 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额。</p><pre><code>示例 1：
-    输入：nums = [2,3,2]
-    输出：3
-    解释：你不能先偷窃 1 号房屋（金额 = 2），然后偷窃 3 号房屋（金额 = 2）, 因为他们是相邻的。
-示例 2：
-    输入：nums = [1,2,3,1]
-    输出：4
-    解释：你可以先偷窃 1 号房屋（金额 = 1），然后偷窃 3 号房屋（金额 = 3）。
-        偷窃到的最高金额 = 1 + 3 = 4 。
-示例 3：
-    输入：nums = [1,2,3]
-    输出：3
-提示：
-    1 &lt;= nums.length &lt;= 100
-    0 &lt;= nums[i] &lt;= 1000
-</code></pre><p>分析：此题由于房屋的成环，说明题目所给数组为环状，若要所偷的金额最大，分为3种情况，第一种不考虑第一个房屋和最后一个房屋，此时为线性数组。第二种为考虑第一个房屋，不考虑最后一个房屋，第三种为考虑最后一个房屋，不考虑第一个房屋。（此种考虑是因为环形数组第一个与最后一个相同）</p><pre><code>考虑动规五步曲：
+</span></span></code></pre></div></details><h2 id=二-线性dp>二 线性DP</h2><h4 id=21-打家劫舍>2.1 打家劫舍||</h4><p>题目：<a href=https://leetcode.cn/problems/house-robber-ii/description/ title="Visit 打家劫舍||!">213.打家劫舍||</a></p><p>分析：此题由于房屋的成环，说明题目所给数组为环状，若要所偷的金额最大，分为3种情况，第一种不考虑第一个房屋和最后一个房屋，此时为线性数组。第二种为考虑第一个房屋，不考虑最后一个房屋，第三种为考虑最后一个房屋，不考虑第一个房屋。（此种考虑是因为环形数组第一个与最后一个相同）</p><pre><code>考虑动规五步曲：
 1）dp数组的含义：dp[i]，考虑当前房屋i（包含i之前的房屋）,偷窃的最高金额。
 2）递推公式：如何通过历史状态递推出当前状态dp[i]。当前第i的房屋分为2种状态：选与不选？
     a）选，选i房屋时，最大金额 = dp[i-2] + nums[i]。
@@ -116,20 +88,9 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 3) dp数组初始化：dp[0] = nums[0], 只考虑第一个房屋，最大值为nums[0], 
 dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不偷的可能偷1房屋，因此选最大。
 4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
-</code></pre><h2 id=四-股票问题>四 股票问题</h2><h4 id=41-买卖股票的最佳时机>4.1 买卖股票的最佳时机</h4><p>题目：给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。</p><p>你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。设计一个算法来计算你所能获取的最大利润。</p><p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p><pre><code>示例 1：
-    输入：[7,1,5,3,6,4]
-    输出：5
-    解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-        注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
-示例 2：
-    输入：prices = [7,6,4,3,1]
-    输出：0
-    解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
-提示：
-    1 &lt;= prices.length &lt;= 105
-    0 &lt;= prices[i] &lt;= 104
-</code></pre><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
-1）dp数组的含义：dp[i][0]-第i天手里持有股票的状态。有两种情况，
+</code></pre><h2 id=四-股票问题>四 股票问题</h2><h4 id=41-买卖股票的最佳时机>4.1 买卖股票的最佳时机</h4><p>题目：<a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/ title="Visit 买卖股票的最佳时机!">121.买卖股票的最佳时机</a></p><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。
+   dp[i][0]-第i天手里持有股票的状态。有两种情况，
    第一种一直没买过股票，第i天买入这个股票，
    第二种是第i天之前已经买入了这个股票，一直持有到第i天。
    dp[i][1]-第i天手里不持有股票的状态。有三种情况，
@@ -167,28 +128,8 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 </span></span><span style=display:flex><span>       <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>};
-</span></span></code></pre></div></details><h4 id=42-买卖股票的最佳时机ii>4.2 买卖股票的最佳时机II</h4><p>题目：给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。</p><p>在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票。你也可以先购买，然后在同一天出售。</p><p>返回你能获得的最大利润 。</p><pre><code>示例 1：
-    输入：prices = [7,1,5,3,6,4]
-    输出：7
-    解释：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 
-        这笔交易所能获得利润 = 5 - 1 = 4 。
-        随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 
-        这笔交易所能获得利润 = 6 - 3 = 3 。
-        总利润为 4 + 3 = 7 。
-示例 2：
-    输入：prices = [1,2,3,4,5]
-    输出：4
-    解释：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出,
-    这笔交易所能获得利润 = 5 - 1 = 4 。总利润为 4 。
-示例 3：
-    输入：prices = [7,6,4,3,1]
-    输出：0
-    解释：在这种情况下, 交易无法获得正利润，所以不参与交易可以获得最大利润，最大利润为 0 。
-    提示：
-    1 &lt;= prices.length &lt;= 3 * 104
-    0 &lt;= prices[i] &lt;= 104
-</code></pre><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
-1）dp数组的含义：dp[i][0]-第i天手里持有股票的状态。有两种情况，
+</span></span></code></pre></div></details><h4 id=42-买卖股票的最佳时机ii>4.2 买卖股票的最佳时机II</h4><p>题目: <a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/ title="Visit 买卖股票的最佳时机II!">122.买卖股票的最佳时机II</a></p><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。dp[i][0]-第i天手里持有股票的状态。有两种情况，
    第一种第i天买入这个股票，i-1之前可能交易过，（理解为i-1天不持有）
    第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
    dp[i][1]-第i天手里不持有股票的状态。有三种情况，
@@ -223,7 +164,226 @@ dp[1] = max(nums[0], nums[1]),因为对于第2房屋，并不一定偷，若不�
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>};
-</span></span></code></pre></div></details></article></div></div><div class="col-sm-12 col-md-12 col-lg-3"><div id=stickySideBar class=sticky-sidebar><aside class=toc><h5>Table Of Contents</h5><div class=toc-content><nav id=TableOfContents><ul><li><a href=#一-状态机dp>一 状态机DP</a><ul><li></li></ul></li><li><a href=#二-线性dp>二 线性DP</a><ul><li></li></ul></li><li><a href=#三-树形dp>三 树形DP</a><ul><li></li></ul></li><li><a href=#四-股票问题>四 股票问题</a><ul><li></li></ul></li></ul></nav></div></aside><aside class=social><h5>Social</h5><div class=social-content><ul class=list-inline><li class="list-inline-item text-center"><a target=_blank href="https://twitter.com/share?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92&url=https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-twitter"></i></a></li><li class="list-inline-item text-center"><a target=_blank href="https://api.whatsapp.com/send?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92: https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-whatsapp"></i></a></li><li class="list-inline-item text-center"><a target=_blank href='mailto:?subject=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92&amp;body=liwuhen5788%40gmail.com https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f'><i class="fa fa-envelope"></i></a></li></ul></div></aside></div></div></div><div class=row><div class="col-sm-12 col-md-12 col-lg-9 p-4"></div></div></div><button class="p-2 px-3" onclick=topFunction() id=topScroll>
+</span></span></code></pre></div></details><h4 id=43-买卖股票的最佳时机iii>4.3 买卖股票的最佳时机III</h4><p>题目： <a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/ title="Visit 买卖股票的最佳时机III!">123.买卖股票的最佳时机III</a></p><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。
+但是题目要求<strong>至多买卖两次</strong>，这意味着可以买卖一次，可以买卖两次，也可以不买卖, 因此对于某天持有股票分为5种状态。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。
+    dp[i][0]-第i天一直没有买卖股票的状态。
+    dp[i][1]-第i天第一次持有股票的状态。有两种情况，
+    第一种第i天第一次买入这个股票，i-1之前没有交易过，（理解为i-1天不持有）
+    第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+    dp[i][2]-第i天第一次不持有股票的状态。有两种情况，
+    第一种第i天之前第一次买入这个股票，第i天卖出，（理解为i-1天持有）
+    第二种第i天之前已经卖出了这个股票。（理解为i-1天不持有）
+    dp[i][3]-第i天第二次持有股票的状态。有两种情况，
+    第一种第i天第二次买入这个股票，i-1之前已经交易过，（理解为i-1天不持有）
+    第二种第i天之前已经第二次买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+    dp[i][4]-第i天第二次不持有股票的状态。有两种情况，
+    第一种第i天之前第二次买入这个股票，第i天卖出股票，（理解为i-1天持有）
+    第二种第i天之前已经第二次卖出这个股。（理解为i-1天不持有）
+2）递推公式：如何通过历史状态递推出当前状态dp[i]。
+    dp[i][0]-第i天一直没有买卖股票的状态： 最大利润 0
+    dp[i][1]-第i天第一次持有股票的状态:
+    a）第一种，最大利润 dp[i-1][0] - prices[i]。
+    b）第二种，最大利润 dp[i-1][1]。
+    最大利润：dp[i][1] = max(dp[i-1][0] - prices[i], dp[i-1][1])。
+    dp[i][2]-第i天第一次不持有股票的状态:
+    a）第一种，最大利润 dp[i-1][1] + prices[i]。
+    b）第二种，最大利润 dp[i-1][2]。
+    最大利润：dp[i][2] = max(dp[i-1][1] + prices[i], dp[i-1][2])。
+    dp[i][3]-第i天第二次持有股票的状态:
+    a）第一种，最大利润 dp[i-1][2] - prices[i]。
+    b）第二种，最大利润 dp[i-1][3]。
+    最大利润：dp[i][3] = max(dp[i-1][2] - prices[i], dp[i-1][3])。
+    dp[i][4]-第i天第二次不持有股票的状态:
+    a）第一种，最大利润 dp[i-1][3] + prices[i]。
+    b）第二种，最大利润 dp[i-1][4]。
+    最大利润：dp[i][3] = max(dp[i-1][3] + prices[i], dp[i-1][4])。
+   递推公式：最大利润 = max(dp[i][0], dp[i][1], dp[i][2], dp[i][3], dp[i][4]);
+3) dp数组初始化：dp[0][0] = 0;
+   dp[0][1] = -prices[0](初始最大利润为0,第一天持有，说明为第一天买入，因此为负数), 
+   dp[0][2] = 0;   dp[0][3] = -prices[0](第一天完成了第一次买卖股票，又再次买入)   
+   dp[0][4] = 0（第一天完成了第一次买卖股票，又再次买入并卖出）
+4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (prices.empty()) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp(prices.size()<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>        dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>4</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>-</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>-</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>4</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>+</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>4</span>]);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>4</span>];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></details><h4 id=44-买卖股票的最佳时机iv>4.4 买卖股票的最佳时机IV</h4><p>题目：<a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/ title="Visit 买卖股票的最佳时机IV!">188.买卖股票的最佳时机IV</a></p><p>分析： 股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。
+但是题目要求<strong>至多买卖K次</strong>，对比买卖股票最佳时机III，可知，某天的股票状态除了0以外，偶数就是卖出，奇数就是买入。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。
+    dp[i][0]-第i天一直没有买卖股票的状态。
+    dp[i][1]-第i天第一次持有股票的状态。有两种情况，
+    第一种第i天第一次买入这个股票，i-1之前没有交易过，（理解为i-1天不持有）
+    第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+    dp[i][2]-第i天第一次不持有股票的状态。有两种情况，
+    第一种第i天之前第一次买入这个股票，第i天卖出，（理解为i-1天持有）
+    第二种第i天之前已经卖出了这个股票。（理解为i-1天不持有）
+    dp[i][3]-第i天第二次持有股票的状态。有两种情况，
+    第一种第i天第二次买入这个股票，i-1之前已经交易过，（理解为i-1天不持有）
+    第二种第i天之前已经第二次买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+    dp[i][4]-第i天第二次不持有股票的状态。有两种情况，
+    第一种第i天之前第二次买入这个股票，第i天卖出股票，（理解为i-1天持有）
+    第二种第i天之前已经第二次卖出这个股。（理解为i-1天不持有）
+
+    规律：偶数就是卖出，奇数就是买入； j的取值范围 0&lt;= j &lt;= 2j+1；
+    奇数：dp[i][j+1]   偶数： dp[i][j+2]
+2）递推公式：如何通过历史状态递推出当前状态dp[i]。
+    dp[i][0]-第i天一直没有买卖股票的状态： 最大利润 0
+    dp[i][1]-第i天第一次持有股票的状态:
+    a）第一种，最大利润 dp[i-1][0] - prices[i]。
+    b）第二种，最大利润 dp[i-1][1]。
+    最大利润：dp[i][1] = max(dp[i-1][0] - prices[i], dp[i-1][1])。
+    dp[i][2]-第i天第一次不持有股票的状态:
+    a）第一种，最大利润 dp[i-1][1] + prices[i]。
+    b）第二种，最大利润 dp[i-1][2]。
+    最大利润：dp[i][2] = max(dp[i-1][1] + prices[i], dp[i-1][2])。
+    dp[i][3]-第i天第二次持有股票的状态:
+    a）第一种，最大利润 dp[i-1][2] - prices[i]。
+    b）第二种，最大利润 dp[i-1][3]。
+    最大利润：dp[i][3] = max(dp[i-1][2] - prices[i], dp[i-1][3])。
+    dp[i][4]-第i天第二次不持有股票的状态:
+    a）第一种，最大利润 dp[i-1][3] + prices[i]。
+    b）第二种，最大利润 dp[i-1][4]。
+
+    奇数：dp[i][j+1] = max(dp[i-1][j] - prices[i], dp[i-1][j+1])
+    偶数：dp[i][j+2] = max(dp[i-1][j+1] + prices[i], dp[i-1][j+2])
+   递推公式：最大利润 = max(dp[i][j+1], dp[i][j+2])。
+3) dp数组初始化：dp[0][0] = 0;
+   dp[0][1] = -prices[0](初始最大利润为0,第一天持有，说明为第一天买入，因此为负数), 
+   dp[0][2] = 0;   dp[0][3] = -prices[0](第一天完成了第一次买卖股票，又再次买入)   
+   dp[0][4] = 0（第一天完成了第一次买卖股票，又再次买入并卖出）
+4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(<span style=color:#66d9ef>int</span> k, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (prices.size() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp(prices.size(), vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> k <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> k; j <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>) {
+</span></span><span style=display:flex><span>            dp[<span style=color:#ae81ff>0</span>][j] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> k <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; j <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>) {
+</span></span><span style=display:flex><span>                dp[i][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>], dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j] <span style=color:#f92672>-</span> prices[i]);
+</span></span><span style=display:flex><span>                dp[i][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> max(dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>], dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> prices[i]);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[prices.size() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> k];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></details><h4 id=45-买卖股票的最佳时机含冷冻期>4.5 买卖股票的最佳时机含冷冻期</h4><p>题目： <a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/ title="Visit 买卖股票的最佳时机含冷冻期!">309.买卖股票的最佳时机含冷冻期</a></p><p>分析： 股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。
+但是题目要求<strong>卖出股票后有一天冷冻期</strong>，考虑因为本题我们有冷冻期，而冷冻期的前一天，只能是 「今天卖出股票」状态，如果是 「不持有股票状态」那么就很模糊，因为不一定是 卖出股票的操作，本题目将第i天不持有股票状态拆分出来，状态-第i天卖出股票，状态-第i天之前已经卖出股票。总分为4个状态。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。
+   dp[i][0]-第i天手里持有股票的状态。有三种情况，
+   第一种第i天买入这个股票，i-1处于冷冻期，（理解为i-1天不持有）
+   第二种第i天买入这个股票，i-1不持有，（理解为i-1天不持有）
+   第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+   dp[i][1]-第i天保持卖出股票的状态。有二种情况，
+   第一种第i天之前卖出，（理解为i-1天不持有）
+   第二种第i天之前卖出，i-1天处于冷冻期。（理解为i-1天不持有）
+   dp[i][2]-第i天卖出股票的状态。有一种情况，
+   第i天之前买入了，第i天卖出，（理解为i-1天持有）
+   dp[i][3]-第i天为冷冻期的状态。有一种情况，
+   第一种第i-1天卖出股票，第i天为冷冻期。
+2）递推公式：如何通过历史状态递推出当前状态dp[i]。
+    dp[i][0]-第i天手里持有股票的状态3种状态：
+    a）第一种，最大利润 dp[i-1][3] - prices[i]。
+    b）第二种，最大利润 dp[i-1][1] - prices[i]。
+    b）第二种，最大利润 dp[i-1][0]。
+    最大利润：dp[i][0] = max(dp[i-1][3] - prices[i], max(dp[i-1][1] - prices[i], dp[i-1][0]))。
+    dp[i][1]-第i天保持卖出股票的状态2种状态:
+    a）第一种，最大利润 dp[i-1][1]。
+    b）第二种，最大利润 dp[i-1][3]。
+    最大利润：dp[i][0] = max(dp[i-1][3], dp[i-1][1])。
+    dp[i][2]-第i天卖出股票的状态
+    a）第一种，最大利润 dp[i-1][0] + prices[i]。
+    dp[i][3]-第i天为冷冻期的状态
+    a）第一种，最大利润 dp[i-1][2]。
+   递推公式：最大利润 = max(dp[i][0], max(dp[i][1], max(dp[i][2], dp[i][3])));
+3) dp数组初始化：dp[0][0] = -prices[0](初始最大利润为0,第一天持有，说明为第一天买入，因此为负数), 
+   dp[0][1] = 0;
+4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>if</span> (prices.empty())  <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>dp(prices.size()<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>-</span> prices[i], max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]));
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> prices[i];
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>],max(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], max(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>])));
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></details><h4 id=45-买卖股票的最佳时机含手续费>4.5 买卖股票的最佳时机含手续费</h4><p>题目： <a href=https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/ title="Visit 买卖股票的最佳时机含手续费!">714.买卖股票的最佳时机含手续费</a></p><p>分析：股票对于某天就两种状态，持有股票和不持有股票，再加上“某天”这个维度，所以状态有两个：某天与是否持有；用一个二维数组就可以表示所有天数的情况。但是本题目考虑卖出股票时扣除手续费。</p><pre><code>考虑动规五步曲：
+1）dp数组的含义：第i天所获得最大利润。dp[i][0]-第i天手里持有股票的状态。有两种情况，
+   第一种第i天买入这个股票，i-1之前可能交易过，（理解为i-1天不持有）
+   第二种是第i天之前已经买入了这个股票，一直持有到第i天。（理解为i-1天持有）
+   dp[i][1]-第i天手里不持有股票的状态。有三种情况，
+   第一种一直没有买过这个股票（理解为i-1天不持有），第二种第i天之前买入了，第i天卖出，（理解为i-1天持有）
+   第三种第i天之前，已经买入与卖出了这支股票。（理解为i-1天不持有）
+2）递推公式：如何通过历史状态递推出当前状态dp[i]。
+    dp[i][0]-第i天手里持有股票的状态2种状态：
+    a）第一种，最大利润 dp[i-1][1] - prices[i]。
+    b）第二种，最大利润 dp[i-1][0]。
+    最大利润：dp[i][0] = max(dp[i-1][1] - prices[i], dp[i-1][0])。
+    dp[i][1]-第i天手里不持有股票的状态3种状态:
+    a）第一种，最大利润 dp[i-1][1]。
+    b）第二种，最大利润 dp[i-1][0] + prices[i] - fee。
+    c）第三种，最大利润 dp[i-1][1]。
+   递推公式：dp[i][1] = max(dp[i-1][1], dp[i-1][0] + prices[i] - fee);
+3) dp数组初始化：dp[0][0] = -prices[0](初始最大利润为0,第一天持有，说明为第一天买入，因此为负数), 
+   dp[0][1] = 0;
+4) 确定遍历顺序: 由于当前状态与历史状态有关，因此需要i从小到大开始遍历。
+</code></pre><details><summary><font size=4 color=orange>Show Code</font></summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> maxProfit(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> prices, <span style=color:#66d9ef>int</span> fee) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp(prices.size()<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>prices[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>       dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> prices.size(); i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> prices[i], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> prices[i] <span style=color:#f92672>-</span> fee);
+</span></span><span style=display:flex><span>       }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>max</span>(dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[prices.size()<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></details></article></div></div><div class="col-sm-12 col-md-12 col-lg-3"><div id=stickySideBar class=sticky-sidebar><aside class=toc><h5>Table Of Contents</h5><div class=toc-content><nav id=TableOfContents><ul><li><a href=#一-状态机dp>一 状态机DP</a><ul><li></li></ul></li><li><a href=#二-线性dp>二 线性DP</a><ul><li></li></ul></li><li><a href=#三-树形dp>三 树形DP</a><ul><li></li></ul></li><li><a href=#四-股票问题>四 股票问题</a><ul><li></li></ul></li></ul></nav></div></aside><aside class=social><h5>Social</h5><div class=social-content><ul class=list-inline><li class="list-inline-item text-center"><a target=_blank href="https://twitter.com/share?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92I&url=https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-twitter"></i></a></li><li class="list-inline-item text-center"><a target=_blank href="https://api.whatsapp.com/send?text=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92I: https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f"><i class="fab fa-whatsapp"></i></a></li><li class="list-inline-item text-center"><a target=_blank href='mailto:?subject=%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92I&amp;body=liwuhen5788%40gmail.com https%3a%2f%2fliwuhen.cn%2fdatastruct%2fdynamic_programming%2f'><i class="fa fa-envelope"></i></a></li></ul></div></aside></div></div></div><div class=row><div class="col-sm-12 col-md-12 col-lg-9 p-4"></div></div></div><button class="p-2 px-3" onclick=topFunction() id=topScroll>
 <i class="fas fa-angle-up"></i></button></section><div class=progress><div id=scroll-progress-bar class=progress-bar role=progressbar aria-valuenow=0 aria-valuemin=0 aria-valuemax=100></div></div><script src=/js/scrollProgressBar.js></script>
 <script>var topScroll=document.getElementById("topScroll");window.onscroll=function(){scrollFunction()};function scrollFunction(){document.body.scrollTop>20||document.documentElement.scrollTop>20?topScroll.style.display="block":topScroll.style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}let stickySideBarElem=document.getElementById("stickySideBar"),stickyNavBar=!1;if(stickyNavBar){let e=document.getElementById("profileHeader"),t=e.offsetHeight+15;stickySideBarElem.style.top=t+"px"}else stickySideBarElem.style.top="50px"</script><script src=/js/readingTime.js></script></div><footer><div class="container py-3" id=recent-posts><div class="h3 text-center text-secondary py-3">Recent Posts</div><div class="row justify-content-center"><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++类二篇></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++类二篇>C++类二篇</h5></a><div class="card-text secondary-font"><p>五 拷贝构造函数 5.1 默认情况下，类对象的拷贝是每个成员变量逐个拷贝。 5.2 拷贝构造函数 (1) 如果一个类的构造函数，它的第一个参数是所属的类类对象引用，如果还有其他额外参数，这些额外参数都有默认值。 函数默认参数都必须放在函数声明中，除非该函数没有函数声明。 (2) 拷贝构造函数：在一定的时机被系统自动调用，时机：进行对象复制的时候 = (3) 建议拷贝构造函数第一个参数带const, 且一般不要声明explicit来禁止隐式类型转换。 (4)（一中，默认情况下，类对象的拷贝是每个成员变量逐个拷贝。）成员变量逐个拷贝功能。 因为我们定义的拷贝构造函数存在而失去作用。我们定义的拷贝构 …</p></div></div><div class="mt-auto card-footer"><span class=float-start>Jan 26, 2024</span>
 <a href=/programming_languages/c++%E7%B1%BB%E4%BA%8C%E7%AF%87/ class="float-end btn btn-outline-info btn-sm">Read</a></div></div></div><div class="col-lg-4 col-md-6 pt-2"><div class="card h-100"><div class=card-header><a href=/programming_languages/c++%E7%B1%BB%E4%B8%80%E7%AF%87/><img src=/images/CPlusPlus1.png class=card-img-top alt=C++类一篇></a></div><div class="card-body bg-transparent p-3 shadow-sm"><a href=/programming_languages/c++%E7%B1%BB%E4%B8%80%E7%AF%87/ class="primary-font card-title"><h5 class="card-title bg-transparent" title=C++类一篇>C++类一篇</h5></a><div class="card-text secondary-font"><p>一 成员函数、对象复制与私有方法 1.1 综述：类是我们自己定义的数据类型（新类型） 类是我们自己定义的数据类型，新类型 设计类需要考虑的角度 (1) 站在设计和实现的角度--stl模板类的设计者 (2) 站在使用者的角度--哪些是提供给我们的接口 (3) 继承的角度，父类和子类 公共特性由父类来实现 1.2 类基础 (1) 一个类就是用户自己定义的数据类型，我们可以把类想象成一个命名空间，包着一堆东西（成员函数、成员变量） (2)一个类的组成，成员变量（属性）成员函数--由很多特殊的成员函数（构造，析构）和成员属性（this指针） (3) 访问类成员的时候，如果是类对象，就是用 对象名.成员 …</p></div></div><div class="mt-auto card-footer"><span class=float-start>Jan 26, 2024</span>
