@@ -4,7 +4,7 @@ date: 2024-01-30T01:44:57Z
 draft: false
 author: 李双双
 tags:
-image:
+image: /images/img007.png
 description:
 toc:
 ---
