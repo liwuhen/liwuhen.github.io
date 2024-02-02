@@ -394,7 +394,7 @@ params:
 
   footer:
     recentPosts:
-      path: "Programming_Languages"
+      path: "datastruct"
       count: 3
       title: Recent Posts
       enable: true
