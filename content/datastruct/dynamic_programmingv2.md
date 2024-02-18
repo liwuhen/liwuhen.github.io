@@ -327,8 +327,4 @@ public:
 ```
 </details>
 
-#### 4.8 不同的子序列
-题目 [115.不同的子序列](https://leetcode.cn/problems/distinct-subsequences/description/, "不同的子序列")
-
-分析：
 

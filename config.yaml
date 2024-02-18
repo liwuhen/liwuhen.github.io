@@ -14,7 +14,9 @@ outputs:
     - "RSS"
 
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
-Paginate: 3
+range:
+  Paginate: 
+    Pages: 6
 # 是否生成 robots.txt 文件
 enableRobotsTXT: true
 # disqusShortname: your-disqus-shortname
@@ -43,21 +45,26 @@ Menus:
       title: "Data Structures and Algorithms"
       url: /datastruct/
       weight: 3
+    - identifier: Model Deploy
+      name: 模型部署
+      title: "Model Deploy"
+      url: /Model_Deploy/
+      weight: 4
     - identifier: programming languages
       name: 编程语言
       title: "Programming Languages"
       url: /Programming_Languages/
-      weight: 4
+      weight: 5
     - identifier: life
       name: 生活
       title: "Life"
       url: /life/
-      weight: 5
+      weight: 6
     - identifier: About
       name: 关于
       title: "About Blog"
       url: /About_Blog/
-      weight: 6
+      weight: 7
     # Dropdown menu
     # - identifier: dropdown
     #   title: Example dropdown menu
@@ -81,8 +88,7 @@ Menus:
 params:
   title: "璇玑"
   description: Text about my cool site
-  # The path to serve the static files from
-  staticPath: 
+  staticPath: ""   # The path to serve the static files from
   favicon: "/images/img006.png"
 
   # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
@@ -108,8 +114,8 @@ params:
 
   # 字体
   font:
-    fontSize: 1rem # default: 1rem
-    fontWeight: 400 # default: 400
+    fontSize: 0.9rem # default: 1rem
+    fontWeight: 100 # default: 400
     lineHeight: 1.5 # default: 1.5
     textAlign: left # default: left
 
