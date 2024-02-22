@@ -400,7 +400,7 @@ params:
 
   footer:
     recentPosts:
-      path: "datastruct"
+      path: "Model_Deploy"
       count: 3
       title: Recent Posts
       enable: true
