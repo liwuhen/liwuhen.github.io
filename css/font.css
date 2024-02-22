@@ -16,5 +16,6 @@ body {
 
 /* Default font */
 .default-font, #default-font {
-    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Alata", sans-serif;
 }
